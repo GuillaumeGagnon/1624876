@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GuillaumeGagnon</string>
+    <string name="messageLog">francais(default)</string>
 </resources>
