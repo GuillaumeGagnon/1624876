@@ -1,4 +1,8 @@
 <resources>
+    <!--String universel -->
     <string name="app_name">GuillaumeGagnon</string>
+
+
+    <!-- string par default -->
     <string name="messageLog">francais(default)</string>
 </resources>

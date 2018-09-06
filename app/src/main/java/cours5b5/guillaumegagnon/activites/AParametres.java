@@ -1,10 +1,12 @@
-package cours5b5.guillaumegagnon;
+package cours5b5.guillaumegagnon.activites;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Parametres extends AppCompatActivity {
+import cours5b5.guillaumegagnon.R;
+
+public class AParametres extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
