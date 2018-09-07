@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="73dp">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewHauteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hauteur"
@@ -22,7 +22,7 @@
         tools:layout_editor_absoluteY="60dp" />
 
     <Spinner
-        android:id="@+id/spinner4"
+        android:id="@+id/spinnerHauteur"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="236dp"
@@ -32,11 +32,11 @@
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintStart_toEndOf="@+id/textViewHauteur"
+        app:layout_constraintTop_toTopOf="@+id/textViewHauteur" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewLargeur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="191dp"
@@ -50,10 +50,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHauteur" />
 
     <Spinner
-        android:id="@+id/spinner5"
+        android:id="@+id/spinnerLargeur"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="186dp"
@@ -64,11 +64,11 @@
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
+        app:layout_constraintStart_toEndOf="@+id/textViewLargeur"
+        app:layout_constraintTop_toTopOf="@+id/textViewLargeur" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textViewGagner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="140dp"
@@ -82,10 +82,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLargeur" />
 
     <Spinner
-        android:id="@+id/spinner6"
+        android:id="@+id/spinnerGagner"
         android:layout_width="230dp"
         android:layout_height="0dp"
         android:layout_marginBottom="135dp"
@@ -95,7 +95,7 @@
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintStart_toEndOf="@+id/textViewGagner"
+        app:layout_constraintTop_toTopOf="@+id/textViewGagner" />
 
 </cours5b5.guillaumegagnon.vues.VParametres>
