@@ -5,4 +5,8 @@
 
     <!-- string par default -->
     <string name="messageLog">francais(default)</string>
+    <string name="hauteur">Hauteur:</string>
+    <string name="largeur">Largeur:</string>
+    <string name="gagner">Pour gagner:</string>
+
 </resources>
