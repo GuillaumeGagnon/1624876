@@ -10,6 +10,9 @@ import android.widget.Spinner;
 import cours5b5.guillaumegagnon.R;
 import cours5b5.guillaumegagnon.global.GConstantes;
 
+import static android.view.Gravity.CENTER;
+import static android.view.Gravity.CENTER_HORIZONTAL;
+
 public class VParametres extends ConstraintLayout {
     public VParametres(Context context) {
         super(context);
@@ -34,14 +37,8 @@ public class VParametres extends ConstraintLayout {
         Spinner spinnerLargeur = this.findViewById(R.id.spinnerLargeur);
         Spinner spinnerGagner = this.findViewById(R.id.spinnerGagner);
 
+        /*SPINNER HAUTEUR*/
         ArrayAdapter<Integer> adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        //spinnerHauteur.setAdapter(adapterHauteur);
-
-        ArrayAdapter<Integer> adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        spinnerHauteur.setAdapter(adapterLargeur);
-
-        ArrayAdapter<Integer> adapterGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        spinnerHauteur.setAdapter(adapterGagner);
 
         for (int i = GConstantes.hMin; i <= GConstantes.hMax; i++){
             adapterHauteur.add(i);
@@ -50,6 +47,37 @@ public class VParametres extends ConstraintLayout {
         spinnerHauteur.setSelection(adapterHauteur.getPosition(GConstantes.hDefault));
 
 
+        /*SPINNER LARGEUR*/
+        ArrayAdapter<Integer> adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
+
+        for (int i = GConstantes.lMin; i <= GConstantes.lMax; i++){
+            adapterLargeur.add(i);
+        }
+        spinnerLargeur.setAdapter(adapterLargeur);
+        spinnerLargeur.setSelection(adapterLargeur.getPosition(GConstantes.lDefault));
+
+
+        /*SPINNER GAGNER*/
+        ArrayAdapter<Integer> adapterGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
+
+        for (int i = GConstantes.gagnerMin; i <= GConstantes.gagnerMax; i++){
+            adapterGagner.add(i);
+        }
+        spinnerGagner.setAdapter(adapterGagner);
+        spinnerGagner.setSelection(adapterGagner.getPosition(GConstantes.gagnerDefault));
+        //spinnerGagner.setGravity(CENTER_HORIZONTAL);
+
+
+
+
 
     }
+
+    /*private ArrayAdapter<Integer> initiate_adapter() {
+        ArrayAdapter<Integer> adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        for (int i = GConstantes.hMin; i <= GConstantes.hMax; i++){
+            adapterHauteur.add(i);
+        }
+        return null;
+    }*/
 }

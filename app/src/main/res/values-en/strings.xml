@@ -2,5 +2,8 @@
 <resources>
     <!-- string EN -->
     <string name="messageLog">english</string>
+    <string name="hauteur">Height:</string>
+    <string name="largeur">Width:</string>
+    <string name="gagner">To win:</string>
 
 </resources>
