@@ -9,4 +9,6 @@
     <string name="largeur">Largeur :</string>
     <string name="gagner">Pour gagner :</string>
 
+    <string name="menu_bouton_parametre">Paramètres</string>
+
 </resources>

@@ -6,4 +6,6 @@
     <string name="largeur">Width:</string>
     <string name="gagner">To win:</string>
 
+    <string name="menu_bouton_parametre">Settings</string>
+
 </resources>

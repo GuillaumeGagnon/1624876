@@ -1,19 +1,19 @@
 package cours5b5.guillaumegagnon.vues;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
 import cours5b5.guillaumegagnon.R;
 import cours5b5.guillaumegagnon.global.GConstantes;
 
-import static android.view.Gravity.CENTER;
-import static android.view.Gravity.CENTER_HORIZONTAL;
+public class VParametres extends Vue {
+    static{
+        Log.d("Atelier04", VParametres.class.getSimpleName() + "::static");
+    }
 
-public class VParametres extends ConstraintLayout {
+
     public VParametres(Context context) {
         super(context);
     }
@@ -28,9 +28,10 @@ public class VParametres extends ConstraintLayout {
 
     @Override
     protected void onFinishInflate() {
+        Log.d("Atelier04", VParametres.class.getSimpleName() + "::onFinishInflate");
         super.onFinishInflate();
 
-        Log.d("@@@","pslpslpslpslpsl");
+//        Log.d("@@@","pslpslpslpslpsl");
 
 
         Spinner spinnerHauteur = this.findViewById(R.id.spinnerHauteur);
