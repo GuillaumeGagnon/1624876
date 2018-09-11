@@ -1,9 +1,7 @@
 package cours5b5.guillaumegagnon.activites;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
 import cours5b5.guillaumegagnon.R;
 
 public class AParametres extends Activite {

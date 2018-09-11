@@ -74,11 +74,5 @@ public class VParametres extends Vue {
 
     }
 
-    /*private ArrayAdapter<Integer> initiate_adapter() {
-        ArrayAdapter<Integer> adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        for (int i = GConstantes.hMin; i <= GConstantes.hMax; i++){
-            adapterHauteur.add(i);
-        }
-        return null;
-    }*/
+
 }

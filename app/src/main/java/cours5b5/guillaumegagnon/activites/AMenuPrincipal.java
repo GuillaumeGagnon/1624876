@@ -1,12 +1,10 @@
 package cours5b5.guillaumegagnon.activites;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import cours5b5.guillaumegagnon.R;
 
 public class AMenuPrincipal extends Activite {
