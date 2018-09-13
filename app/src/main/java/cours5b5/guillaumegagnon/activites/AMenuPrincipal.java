@@ -9,6 +9,7 @@ import cours5b5.guillaumegagnon.R;
 
 public class AMenuPrincipal extends Activite {
     static{
+        Log.v("Atelier04", AMenuPrincipal.class.getSimpleName() + "::static");
         Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + "::static");
     }
 

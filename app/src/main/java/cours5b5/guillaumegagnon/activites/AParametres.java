@@ -2,7 +2,13 @@ package cours5b5.guillaumegagnon.activites;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import java.util.Map;
+
 import cours5b5.guillaumegagnon.R;
+import cours5b5.guillaumegagnon.modeles.MParametres;
+import cours5b5.guillaumegagnon.modeles.Modele;
+import cours5b5.guillaumegagnon.serialisation.Jsonification;
 
 public class AParametres extends Activite {
     static{
@@ -16,22 +22,18 @@ public class AParametres extends Activite {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
 
+        if(savedInstanceState != null){
+
+//            String json = savedInstanceState.getString("testKey");
+//
+//            Map<String, Object> objetJson = Jsonification.enObjetJson(json);
+//
+//            MParametres.instance.aPartirObjetJson(objetJson);
+        }
+
         Log.d("@",this.getResources().getString(R.string.messageLog));
         Log.d("@@",this.getResources().getString(R.string.messageOrientationLog));
 
-
-
-    /*
-    NE FONCTIONNE PAS CAR LA RESSOURCE EXISTE SEULEMENT EN PORTRAIT
-
-    if(this.getResources().getBoolean(R.bool.portrait)){
-        Log.d("@@@", "PORTRAIT");
-    } else{
-        Log.d("@@@", "LANDSCAPE");
-    }
-
-
-    */
 
 
     }
@@ -48,10 +50,25 @@ public class AParametres extends Activite {
         super.onPause();
     }
 
+    protected  void restaurerParametre (Bundle savedInstanceState){
+
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState){
+        Log.v("Atelier04", AParametres.class.getSimpleName() + "::onSaveInstanceState");
         Log.d("Atelier04", AParametres.class.getSimpleName() + "::onSaveInstanceState");
         super.onSaveInstanceState(outState);
+
+//        Map<String, Object> objetJson = MParametres.instance.enObjetJson();
+//
+//        String json = Jsonification.enChaine(objetJson);
+//
+//        outState.putString("testKey", json);
+    }
+
+    protected  void  sauvegarderParametres (Bundle outState){
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.util.Log;
 
 public class VMenuPrincipal extends Vue {
     static{
+        Log.v("Atelier04", VMenuPrincipal.class.getSimpleName() + "::static");
         Log.d("Atelier04", VMenuPrincipal.class.getSimpleName() + "::static");
     }
 
