@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="messageOrientationLog"> (portrait)</string>
-    <bool name="portrait">true</bool>
-</resources>

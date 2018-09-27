@@ -1,14 +1,16 @@
 <resources>
-    <!--String universel -->
-    <string name="app_name">GuillaumeGagnon</string>
 
+    <string name="app_name" translatable="false">GuillaumeGagnon</string>
 
-    <!-- string par default -->
-    <string name="messageLog">francais(default)</string>
-    <string name="hauteur">Hauteur :</string>
-    <string name="largeur">Largeur :</string>
-    <string name="gagner">Pour gagner :</string>
+    <string name="bonjour">Bonjour!</string>
 
-    <string name="menu_bouton_parametre">Paramètres</string>
+    <string name="paysage">paysage</string>
+    <string name="portrait" translatable="false">portrait</string>
+
+    <string name="hauteur">Hauteur: </string>
+    <string name="largeur">Largeur: </string>
+    <string name="pour_gagner">Pour gagner: </string>
+
+    <string name="parametres">Parametres</string>
 
 </resources>

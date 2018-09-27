@@ -2,13 +2,13 @@
 <resources>
 
 
+    <string name="bonjour">Hello!</string>
+    <string name="paysage">landscape</string>
 
-    <!-- string EN -->
-    <string name="messageLog">english</string>
-    <string name="hauteur">Height:</string>
-    <string name="largeur">Width:</string>
-    <string name="gagner">To win:</string>
+    <string name="hauteur">Height: </string>
+    <string name="largeur">Width: </string>
+    <string name="pour_gagner">To win: </string>
 
-    <string name="menu_bouton_parametre">Settings</string>
+    <string name="parametres">Parameters</string>
 
 </resources>
