@@ -12,4 +12,7 @@
     <string name="parametres">Settings</string>
     <string name="jouer">Play</string>
 
+    <string name="joueur1">Player #1</string>
+    <string name="joueur2">Player #2</string>
+
 </resources>

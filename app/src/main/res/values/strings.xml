@@ -14,4 +14,7 @@
     <string name="parametres">Parametres</string>
     <string name="jouer">Jouer</string>
 
+    <string name="joueur1">Joueur #1</string>
+    <string name="joueur2">Joueur #2</string>
+
 </resources>

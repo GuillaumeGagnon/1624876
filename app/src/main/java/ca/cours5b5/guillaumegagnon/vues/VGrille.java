@@ -8,6 +8,9 @@ import android.widget.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.cours5b5.guillaumegagnon.global.GCouleur;
+import ca.cours5b5.guillaumegagnon.modeles.MGrille;
+
 public class VGrille extends GridLayout{
 
     public VGrille(Context context) {
@@ -32,6 +35,9 @@ public class VGrille extends GridLayout{
     //memoriser les en-tête ajoutées
     private List<VEntete> entetes;
 
+    // mémoriser les VCase ajouté (tab[][])
+    private VCase[][] lesCases;
+
 
 
     //mémoriser les VCase ajoutées avec un tableau a 2 dimensions
@@ -40,7 +46,7 @@ public class VGrille extends GridLayout{
     private class Colonne extends ArrayList<VCase> {
 
     }
-    private List<Colonne> lesCases;
+    private List<Colonne> lesColonne;
 
 
     @Override
@@ -50,7 +56,7 @@ public class VGrille extends GridLayout{
 
     void creerGrille(int hauteur, int largeur){
         entetes = new ArrayList<>();
-        lesCases = new ArrayList<>();
+        lesColonne = new ArrayList<>();
         nombreRangees = hauteur;
 
         initialiserColonnes(largeur);
@@ -67,7 +73,7 @@ public class VGrille extends GridLayout{
     private void initialiserColonnes(int largeur){
 
         for(int i = 0; i < largeur; i++){
-            lesCases.add(new Colonne());
+            lesColonne.add(new Colonne());
         }
 
     }
@@ -81,6 +87,9 @@ public class VGrille extends GridLayout{
 
             //Ajout de entête
             entetes.add(entete);
+
+            //Pour chaque en-tete, on veut installer le listener
+            installerListenerEntete(entete, i);
 
         }
     }
@@ -112,7 +121,7 @@ public class VGrille extends GridLayout{
 
                 colonne.add(vCase);
             }
-            lesCases.add(i, colonne);
+            lesColonne.add(i, colonne);
         }
     }
 
@@ -130,6 +139,27 @@ public class VGrille extends GridLayout{
         mesParams.leftMargin = 5;
 
         return mesParams;
+    }
+
+
+    private void initialiserTableauDeCases(int hauteur, int largeur){
+
+    }
+
+    private void demanderActionEntete(){
+
+    }
+
+    private void installerListenerEntete(VEntete entete, final int colonne){
+
+    }
+
+    void afficherJetons(MGrille grille){
+
+    }
+
+    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
+
     }
 
 

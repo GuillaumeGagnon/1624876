@@ -45,6 +45,9 @@ public class VPartie extends Vue{
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
                         initialiserGrille(getPartie(modele));
+
+                        /*a vérifier*/
+                        miseAJourGrille((MPartie) modele);
                     }
                 });
 
@@ -61,6 +64,10 @@ public class VPartie extends Vue{
         MParametresPartie parametres = partie.getParametres();
 
         grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
+    }
+
+    public void miseAJourGrille(MPartie partie){
+
     }
 
 }
