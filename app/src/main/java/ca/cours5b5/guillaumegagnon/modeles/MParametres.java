@@ -13,14 +13,20 @@ import ca.cours5b5.guillaumegagnon.serialisation.AttributSerialisable;
 
 public class MParametres extends Modele {
 
-    // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07
-    public static MParametres instance;
+    // FIXME: c'est temporaire ; on va écrire un gestionnaire de modèles à l'Atelier07 -->09
+    public static MParametres instance = new MParametres();
 
     static{
         Log.d("Atelier04", MParametres.class.getSimpleName() + "::static");
 
-        instance = new MParametres();
+        //instance = new MParametres();
     }
+
+    /*ajouter a atelier #6*/
+    @AttributSerialisable
+    public MParametresPartie parametresPartie;
+    private String __parametresPartie = "parametresPartie";
+
 
     @AttributSerialisable
     public Integer hauteur;
@@ -39,14 +45,24 @@ public class MParametres extends Modele {
     private List<Integer> choixPourGagner;
 
     public MParametres(){
-        super();
+        /*super();
 
         hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
         largeur = GConstantes.LARGEUR_PAR_DEFAUT;
         pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
 
+        genererListesDeChoix();*/
         genererListesDeChoix();
+        parametresPartie = new MParametresPartie();
     }
+
+    /******************************/
+    /*atelier #6*/
+    public MParametresPartie getParametresPartie() {
+        return parametresPartie;
+    }
+    /******************************/
+
 
     public List<Integer> getChoixHauteur(){
         return choixHauteur;
@@ -59,7 +75,7 @@ public class MParametres extends Modele {
     public List<Integer> getChoixPourGagner(){
         return choixPourGagner;
     }
-
+/*
     public Integer getHauteur() {
         return hauteur;
     }
@@ -83,7 +99,7 @@ public class MParametres extends Modele {
     public void setPourGagner(int pourGagner) {
         this.pourGagner = pourGagner;
     }
-
+*/
     private void genererListesDeChoix(){
         genererListeChoixHauteur();
         genererListeChoixLargeur();
@@ -117,28 +133,10 @@ public class MParametres extends Modele {
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
             String chaineValeur = (String) entry.getValue();
+            Object valeur = entry.getValue();
 
-            switch (entry.getKey()){
-
-                case __hauteur:
-
-                    hauteur = Integer.valueOf(chaineValeur);
-                    break;
-
-                case __largeur:
-
-                    largeur = Integer.valueOf(chaineValeur);
-                    break;
-
-
-                case __pourGagner:
-
-                    largeur = Integer.valueOf(chaineValeur);
-                    break;
-
-                default:
-
-                    throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
+            if(chaineValeur == __parametresPartie){
+                parametresPartie.aPartirObjetJson((Map<String, Object>) valeur);
             }
         }
     }
@@ -148,9 +146,7 @@ public class MParametres extends Modele {
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(__hauteur, hauteur.toString());
-        objetJson.put(__largeur, largeur.toString());
-        objetJson.put(__pourGagner, pourGagner.toString());
+        objetJson.put(this.__parametresPartie, this.parametresPartie);
 
         return objetJson;
 
