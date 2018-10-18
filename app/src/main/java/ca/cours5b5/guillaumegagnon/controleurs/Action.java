@@ -25,6 +25,7 @@ public class Action {
         action.fournisseur = fournisseur;
         action.listenerFournisseur = listenerFournisseur;
 
+
         if(!args.equals(null)){
             action.args = args.clone();
         }

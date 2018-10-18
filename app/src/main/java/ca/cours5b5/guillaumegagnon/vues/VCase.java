@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import ca.cours5b5.guillaumegagnon.global.GCouleur;
 
@@ -24,19 +25,19 @@ public class VCase extends AppCompatButton{
         super(context);
 
         this.setText(rangee + "," + colonne);
-        setBackgroundColor(Color.GRAY);
     }
 
     public void afficherJeton(GCouleur jeton){
+        Log.d("atelier07", "couleur");
         int couleur = Color.RED;
-
+        Log.d("atelier07", "couleur::" + couleur);
         if(jeton.equals(GCouleur.ROUGE)){
             couleur = Color.RED;
         } else if (jeton.equals(GCouleur.JAUNE)){
             couleur = Color.YELLOW;
         }
-
-        setBackgroundColor(couleur);
+        Log.d("atelier07", "couleur::" + couleur);
+        this.setBackgroundColor(couleur);
     }
 
 }

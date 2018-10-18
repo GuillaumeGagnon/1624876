@@ -49,9 +49,9 @@ public class ControleurAction {
         Log.d("Atelier07", ControleurAction.class.getSimpleName() +".executerActionsExecutables");
         for(Action action : fileAttenteExecution) {
             if(siActionExecutable(action)){
-                fileAttenteExecution.remove(action);
                 executerMaintenant(action);
                 lancerObservationSiApplicable(action);
+                fileAttenteExecution.remove(action);
             }
         }
     }

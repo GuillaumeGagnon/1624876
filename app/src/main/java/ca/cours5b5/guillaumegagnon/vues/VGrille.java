@@ -1,6 +1,7 @@
 package ca.cours5b5.guillaumegagnon.vues;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -31,32 +32,13 @@ public class VGrille extends GridLayout{
         super(context, attrs, defStyleAttr);
     }
 
-    public VGrille(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    /*public VGrille(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-    }
+    }*/
 
-
-    private int nombreRangees;
-
-    //memoriser les en-tête ajoutées
-    //old
-    //private List<VEntete> entetes;
-
-    // mémoriser les VCase ajouté (tab[][])
     private VCase[][] lesCases;
 
-
-
-    //mémoriser les VCase ajoutées avec un tableau a 2 dimensions
-    //private VCase[][] lesCase;
-    //ou
-    private class Colonne extends ArrayList<VCase> {
-
-    }
-
-    //old
-    private List<Colonne> lesColonne;
-
+    //private class Colonne extends ArrayList<VCase> {}
 
     //atelier07
     private Action jouer;
@@ -103,19 +85,12 @@ public class VGrille extends GridLayout{
 
             //Vue
             addView(entete, getMiseEnPageEntete(i));
-
-            //Ajout de entête
-            //entetes.add(entete);
         }
     }
 
     private LayoutParams getMiseEnPageEntete(int colonne){
-
-        float poidsColonne = 3;
-        float poidsRangee = 1;
-
-        Spec specRangee = GridLayout.spec(0, poidsColonne);
-        Spec specColonne = GridLayout.spec(colonne, poidsRangee);
+        Spec specRangee = GridLayout.spec(0, 3f);
+        Spec specColonne = GridLayout.spec(colonne, 1f);
 
         LayoutParams mesParams = new LayoutParams(specRangee, specColonne);
 
@@ -129,26 +104,18 @@ public class VGrille extends GridLayout{
     }
 
     private void ajouterCases(int hauteur, int largeur){
-        /*for(int i = 0; i < largeur; i++){
-            Colonne colonne = new Colonne();
-            for(int j = hauteur; j > 0; j--){
-                VCase vCase = new VCase(getContext(), j-(2 * (j - hauteur)) - hauteur, i);
 
-                this.addView(vCase, getMiseEnPageCase(j,i));
 
-                colonne.add(vCase);
-            }
-            lesColonne.add(i, colonne);
-        }*/
 
         // maths simplified
         // i-> h     et    j-> l
-        //(plus logique)
+        //(plus logique/lisible)
         for(int h = 0; h < hauteur; ++h){
             for(int l = 0; l < largeur; ++l){
                 VCase vCase = new VCase(getContext(), h, l);
                 addView(vCase, getMiseEnPageCase(hauteur - h - 1, l));
                 lesCases[h][l] = vCase;
+                //lesCases[h][l].setBackgroundColor(Color.BLUE);
             }
         }
     }
@@ -161,10 +128,9 @@ public class VGrille extends GridLayout{
 
         mesParams.width = 0;
         mesParams.height = 0;
-        mesParams.setGravity(Gravity.FILL);
-
         mesParams.rightMargin = 5;
         mesParams.leftMargin = 5;
+        mesParams.setGravity(Gravity.FILL);
 
         return mesParams;
     }
@@ -192,14 +158,16 @@ public class VGrille extends GridLayout{
     void afficherJetons(MGrille grille){
         List<MColonne> colonnes = grille.getColonnes();
         for(int colonne = 0; colonne < colonnes.size(); ++colonne){
-            for(int large = 0; large < colonnes.get(colonne).getJetons().size(); ++large){
-                afficherJeton(colonne, large, colonnes.get(colonne).getJetons().get(large));
+            for(int largeur = 0; largeur < colonnes.get(colonne).getJetons().size(); ++largeur){
+                //lesCases[largeur][colonne].setBackgroundColor(Color.YELLOW);
+                afficherJeton(colonne, largeur, colonnes.get(colonne).getJetons().get(largeur));
             }
         }
     }
 
-    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
-        lesCases[rangee][colonne].afficherJeton(jeton);
+    private void afficherJeton(int colonne, int large, GCouleur jeton){
+        lesCases[large][colonne].afficherJeton(jeton);
+        //lesCases[large][colonne].setBackgroundColor(Color.YELLOW);
     }
 
 

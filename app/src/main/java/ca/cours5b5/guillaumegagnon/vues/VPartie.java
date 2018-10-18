@@ -40,15 +40,11 @@ public class VPartie extends Vue{
         /*appeler observer pour obtenir le modele
         *
         * ensuite, créer la grille d'affichage*/
-        //ControleurObservation.observerModele();
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        //initialiserGrille(getPartie(modele));
 
-                        /*a vérifier*/
-                        //miseAJourGrille((MPartie) modele);
                         miseAJourGrille((getPartie(modele)));
                     }
 
@@ -70,10 +66,7 @@ public class VPartie extends Vue{
     }
 
     private void initialiserGrille(MPartie partie){
-        /*
-        MParametresPartie parametres = partie.getParametres();
-        grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
-        */
+
         // plus concis
         grille.creerGrille(partie.parametres.hauteur, partie.parametres.largeur);
     }

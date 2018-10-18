@@ -62,7 +62,7 @@ public class MPartie extends Modele implements Fournisseur{
     }
 
     private void initialiserCouleurCourante(){
-    couleurCourante = GCouleur.ROUGE;
+        couleurCourante = GCouleur.ROUGE;
     }
 
     private void fournirActionPlacerJeton(){

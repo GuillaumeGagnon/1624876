@@ -24,7 +24,7 @@ public class ControleurObservation {
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
         //observations.put(ControleurObservation.partie, listenerObservateur); //pas sur
         //Modele modele = null;
-        Log.d("Atelier06", ControleurObservation.class.getSimpleName() + ".observerModele. Nom modele: " + nomModele);
+
         if(nomModele.equals("MPartie")) {
             partie = new MPartie(MParametresPartie.aPartirMParametres(MParametres.instance));
             observations.put(ControleurObservation.partie, listenerObservateur);
@@ -45,7 +45,7 @@ public class ControleurObservation {
         ListenerObservateur listenerObservateur = observations.get(modele);
         //Vérifier si le listener existe pour ce modele and than call it
         if(listenerObservateur != null) {
-            listenerObservateur.reagirNouveauModele(modele);
+            listenerObservateur.reagirChangementAuModele(modele);
         }
     }
 

@@ -51,7 +51,7 @@ public class AMenuPrincipal extends Activite {
         startActivity(intentionParametres);
     }
 
-
+    //old
     /*private void transitionJouer(){
         Intent intentionJouer = new Intent(this, APartie.class);
         startActivity(intentionJouer);
