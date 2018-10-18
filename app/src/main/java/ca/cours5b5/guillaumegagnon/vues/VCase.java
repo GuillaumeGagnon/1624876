@@ -24,14 +24,19 @@ public class VCase extends AppCompatButton{
         super(context);
 
         this.setText(rangee + "," + colonne);
+        setBackgroundColor(Color.GRAY);
     }
 
     public void afficherJeton(GCouleur jeton){
-        if(jeton.name().equals("ROUGE")){
-            setBackgroundColor(Color.red(255));
-        } else{
-            setBackgroundColor(Color.rgb(255, 255, 0));
+        int couleur = Color.RED;
+
+        if(jeton.equals(GCouleur.ROUGE)){
+            couleur = Color.RED;
+        } else if (jeton.equals(GCouleur.JAUNE)){
+            couleur = Color.YELLOW;
         }
+
+        setBackgroundColor(couleur);
     }
 
 }

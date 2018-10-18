@@ -54,9 +54,9 @@ public class MParametresPartie extends Modele{
 
     public MParametresPartie(){
         /*constructeur*/
-        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
-        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
-        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
+        setHauteur(GConstantes.HAUTEUR_PAR_DEFAUT);
+        setLargeur(largeur = GConstantes.LARGEUR_PAR_DEFAUT);
+        setPourGagner(pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT);
 
     }
 

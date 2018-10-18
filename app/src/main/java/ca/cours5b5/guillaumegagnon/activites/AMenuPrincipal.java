@@ -18,11 +18,7 @@ public class AMenuPrincipal extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
         // FIXME: c'est temporaire, ça va dans une action (MVC)
         Button bouton = this.findViewById(R.id.button);
@@ -44,15 +40,21 @@ public class AMenuPrincipal extends Activite {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     private void transitionParametres(){
         Intent intentionParametres = new Intent(this, AParametres.class);
         startActivity(intentionParametres);
     }
 
 
-    private void transitionJouer(){
+    /*private void transitionJouer(){
         Intent intentionJouer = new Intent(this, APartie.class);
         startActivity(intentionJouer);
-    }
+    }*/
 
 }

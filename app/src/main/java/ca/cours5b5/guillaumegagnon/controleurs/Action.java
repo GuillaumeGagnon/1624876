@@ -11,21 +11,22 @@ public class Action {
     Object[] args;
 
     public void setArguments(Object... args){
-        args = args;
+        this.args = args;
     }
 
     public void executerDesQuePossible(){
         //ControleurAction
+        ControleurAction.executerDesQuePossible(this);
     }
 
     Action cloner(){
         Action action = new Action();
+
         action.fournisseur = fournisseur;
         action.listenerFournisseur = listenerFournisseur;
-        action.args = new Object[args.length];
 
-        for(int i =0; i<args.length; i++){
-            action.args[i] = args[i];
+        if(!args.equals(null)){
+            action.args = args.clone();
         }
 
         return action;

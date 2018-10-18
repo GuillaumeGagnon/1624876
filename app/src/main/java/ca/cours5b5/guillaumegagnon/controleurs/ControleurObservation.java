@@ -23,32 +23,36 @@ public class ControleurObservation {
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
         //observations.put(ControleurObservation.partie, listenerObservateur); //pas sur
-        Modele modele = null;
-        Log.d("Atelier06",nomModele);
+        //Modele modele = null;
+        Log.d("Atelier06", ControleurObservation.class.getSimpleName() + ".observerModele. Nom modele: " + nomModele);
         if(nomModele.equals("MPartie")) {
-            Log.d("Atelier06","ici");
             partie = new MPartie(MParametresPartie.aPartirMParametres(MParametres.instance));
             observations.put(ControleurObservation.partie, listenerObservateur);
-            modele = ControleurObservation.partie;
+            lancerNouvelleObservation(ControleurObservation.partie);
         }else if(nomModele.equals("MParametres")) {
-            Log.d("Atelier06",nomModele);
-            modele = MParametres.instance;
-            observations.put(modele, listenerObservateur);
+            observations.put(MParametres.instance, listenerObservateur);
+            lancerNouvelleObservation(MParametres.instance);
         }else if(nomModele.equals("MParametresPartie")) {
             Log.d("Atelier06",nomModele);
-            modele = MParametres.instance;
-            observations.put(modele, listenerObservateur);
         } else{
             Log.d("Atelier06","else");
         }
 
-        lancerObservation(modele);
+        //lancerObservation(modele);
     }
 
     public static void lancerObservation(Modele modele) {
         ListenerObservateur listenerObservateur = observations.get(modele);
         //Vérifier si le listener existe pour ce modele and than call it
         if(listenerObservateur != null) {
+            listenerObservateur.reagirNouveauModele(modele);
+        }
+    }
+
+
+    public static void lancerNouvelleObservation(Modele modele){
+        ListenerObservateur listenerObservateur = observations.get(modele);
+        if(listenerObservateur != null){
             listenerObservateur.reagirNouveauModele(modele);
         }
     }

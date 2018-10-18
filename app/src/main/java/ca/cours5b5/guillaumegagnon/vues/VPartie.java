@@ -2,6 +2,7 @@ package ca.cours5b5.guillaumegagnon.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import ca.cours5b5.guillaumegagnon.R;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurObservation;
@@ -44,10 +45,18 @@ public class VPartie extends Vue{
                 new ListenerObservateur() {
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        initialiserGrille(getPartie(modele));
+                        //initialiserGrille(getPartie(modele));
 
                         /*a vérifier*/
-                        miseAJourGrille((MPartie) modele);
+                        //miseAJourGrille((MPartie) modele);
+                        miseAJourGrille((getPartie(modele)));
+                    }
+
+                    @Override
+                    public void reagirNouveauModele(Modele modele) {
+                        super.reagirNouveauModele(modele);
+                        MPartie partie = (MPartie) modele;
+                        initialiserGrille(partie);
                     }
                 });
 
@@ -61,13 +70,16 @@ public class VPartie extends Vue{
     }
 
     private void initialiserGrille(MPartie partie){
+        /*
         MParametresPartie parametres = partie.getParametres();
-
         grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
+        */
+        // plus concis
+        grille.creerGrille(partie.parametres.hauteur, partie.parametres.largeur);
     }
 
     public void miseAJourGrille(MPartie partie){
-
+        this.grille.afficherJetons(partie.getGrille());
     }
 
 }
