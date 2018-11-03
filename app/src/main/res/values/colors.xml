@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="ROUGE">#ff0000 </color>
+    <color name="JAUNE">#ffff5a</color>
+    <color name="VIDE">#64d8e0e4</color>
+
+
+    <color name="action_message">#ccc9ec</color>
+
+
 </resources>

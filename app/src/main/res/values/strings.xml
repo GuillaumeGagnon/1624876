@@ -12,9 +12,12 @@
     <string name="pour_gagner">Pour gagner: </string>
 
     <string name="parametres">Parametres</string>
+
     <string name="jouer">Jouer</string>
 
-    <string name="joueur1">Joueur #1</string>
-    <string name="joueur2">Joueur #2</string>
+    <string name="entete">↓\n↓</string>
+
+    <string name="joueur1">joueur1</string>
+    <string name="joueur2">joueur2</string>
 
 </resources>

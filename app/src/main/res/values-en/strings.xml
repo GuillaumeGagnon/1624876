@@ -9,10 +9,11 @@
     <string name="largeur">Width: </string>
     <string name="pour_gagner">To win: </string>
 
-    <string name="parametres">Settings</string>
+    <string name="parametres">Parameters</string>
+
     <string name="jouer">Play</string>
 
-    <string name="joueur1">Player #1</string>
-    <string name="joueur2">Player #2</string>
+    <string name="joueur1">player1</string>
+    <string name="joueur2">player2</string>
 
 </resources>

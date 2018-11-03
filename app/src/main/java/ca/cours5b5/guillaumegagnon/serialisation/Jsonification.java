@@ -14,10 +14,14 @@ public final class Jsonification {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static Map<String, Object> aPartirChaineJson(String json) throws ErreurSerialisation {
+
         return gson.fromJson(json, Map.class);
+
     }
 
     public static String enChaineJson(Map<String, Object> objetJson) throws ErreurSerialisation {
+
         return gson.toJson(objetJson);
+
     }
 }

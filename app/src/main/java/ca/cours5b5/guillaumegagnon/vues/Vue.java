@@ -3,9 +3,10 @@ package ca.cours5b5.guillaumegagnon.vues;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.util.Log;
+
 
 public abstract class Vue extends ConstraintLayout {
+
     public Vue(Context context) {
         super(context);
     }
@@ -18,10 +19,4 @@ public abstract class Vue extends ConstraintLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-        Log.d("Atelier04", this.getClass().getSimpleName() + "::" +  "onFinishInflate");
-    }
 }

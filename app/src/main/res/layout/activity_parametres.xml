@@ -89,4 +89,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/spinner_largeur"
         app:layout_constraintTop_toTopOf="@+id/texte_pour_gagner" />
+
 </ca.cours5b5.guillaumegagnon.vues.VParametres>
