@@ -24,7 +24,7 @@ public class ControleurObservation {
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
         //observations.put(ControleurObservation.partie, listenerObservateur); //pas sur
         //Modele modele = null;
-
+        Log.d("Atelier06", "observer:::::::::::::::::::::::::::::::::::::::::::::");
         if(nomModele.equals("MPartie")) {
             partie = new MPartie(MParametresPartie.aPartirMParametres(MParametres.instance));
             observations.put(ControleurObservation.partie, listenerObservateur);

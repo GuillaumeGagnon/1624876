@@ -89,16 +89,35 @@ public class VGrille extends GridLayout{
     }
 
     private LayoutParams getMiseEnPageEntete(int colonne){
-        Spec specRangee = GridLayout.spec(0, 3f);
-        Spec specColonne = GridLayout.spec(colonne, 1f);
+        Spec specRangee = GridLayout.spec(0, 2f);
+        Spec specColonne = GridLayout.spec(2, 7f);
 
-        LayoutParams mesParams = new LayoutParams(specRangee, specColonne);
 
-        mesParams.width = 0;
+
+        Spec rangeeBoutonHaut = GridLayout.spec(0, 1f);
+        Spec colonneBoutonHaut = GridLayout.spec(2, 7f);
+
+        Spec rangeeBoutonGauche = GridLayout.spec(1, 3f);
+        Spec colonneBoutonGauche = GridLayout.spec(0, 2f);
+
+        Spec rangeeBoutonCentre = GridLayout.spec(2, 3f);
+        Spec colonneBoutonCentre = GridLayout.spec(2, 7f);
+
+        Spec rangeeBoutonDroit = GridLayout.spec(1, 3f);
+        Spec colonneBoutonDroit = GridLayout.spec(9, 2f);
+
+        Spec rangeeBoutonBas = GridLayout.spec(4, 1f);
+        Spec colonneBoutonBas = GridLayout.spec(2, 7f);
+
+
+        //LayoutParams mesParams = new LayoutParams(specRangee, specColonne);
+
+        LayoutParams mesParams = new LayoutParams(rangeeBoutonHaut, colonneBoutonHaut);
+        /*mesParams.width = 0;
         mesParams.height = 0;
         mesParams.rightMargin = 5;
         mesParams.leftMargin = 5;
-        mesParams.setGravity(Gravity.FILL);
+        mesParams.setGravity(Gravity.FILL);*/
 
         return mesParams;
     }
@@ -113,7 +132,7 @@ public class VGrille extends GridLayout{
         for(int h = 0; h < hauteur; ++h){
             for(int l = 0; l < largeur; ++l){
                 VCase vCase = new VCase(getContext(), h, l);
-                addView(vCase, getMiseEnPageCase(hauteur - h - 1, l));
+                //addView(vCase, getMiseEnPageCase(hauteur - h - 1, l));
                 lesCases[h][l] = vCase;
                 //lesCases[h][l].setBackgroundColor(Color.BLUE);
             }
