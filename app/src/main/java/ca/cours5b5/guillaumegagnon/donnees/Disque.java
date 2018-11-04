@@ -82,9 +82,9 @@ public final class Disque extends SourceDeDonnees {
     }
 
 
-    private File getFichier(String nomModele) {
-
-        String nomFichier = getNomFichier(nomModele);
+    private File getFichier(String cheminSauvegarde) {
+        /**** Atelier 11 */
+        String nomFichier = getNomFichier( cheminSauvegarde.split("/")[0] );
 
         return new File(repertoireRacine, nomFichier);
 
