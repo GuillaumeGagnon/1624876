@@ -13,4 +13,9 @@ public enum GCommande {
 
     JOUER_COUP_ICI,
 
+
+    //atelier 11
+    CONNEXION,
+    DECONNEXION,
+
 }

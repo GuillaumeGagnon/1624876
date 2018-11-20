@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.guillaumegagnon.donnees.Serveur;
 import ca.cours5b5.guillaumegagnon.donnees.SourceDeDonnees;
 import ca.cours5b5.guillaumegagnon.exceptions.ErreurModele;
 import ca.cours5b5.guillaumegagnon.modeles.MParametres;
@@ -13,6 +14,7 @@ import ca.cours5b5.guillaumegagnon.modeles.MParametresPartie;
 import ca.cours5b5.guillaumegagnon.modeles.MPartie;
 import ca.cours5b5.guillaumegagnon.modeles.Modele;
 import ca.cours5b5.guillaumegagnon.donnees.Disque;
+import ca.cours5b5.guillaumegagnon.usagers.UsagerCourant;
 
 public final class ControleurModeles {
 
@@ -27,9 +29,11 @@ public final class ControleurModeles {
     static {
 
         modelesEnMemoire = new HashMap<>();
-
         listeDeSauvegardes = new ArrayList<>();
         listeDeSauvegardes.add(Disque.getInstance());
+
+        //atelier 11
+        listeDeSauvegardes.add(Serveur.getInstance());
 
     }
 
@@ -47,7 +51,8 @@ public final class ControleurModeles {
 
             Map<String, Object> objetJson = modele.enObjetJson();
 
-            sourceDeDonnees.sauvegarderModele(nomModele, objetJson);
+            //modification atelier 11 (getCheminSauvegarde)
+            sourceDeDonnees.sauvegarderModele(getCheminSauvegarde(nomModele), objetJson);
 
         }
     }
@@ -139,7 +144,7 @@ public final class ControleurModeles {
 
     private static String getCheminSauvegarde(String nomModele){
 
-        return nomModele + "/" + "mettre id ici";
+        return nomModele + "/" + UsagerCourant.getId();
     }
 
 }

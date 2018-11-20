@@ -19,6 +19,15 @@ public class VMenuPrincipal extends Vue {
     private Button boutonPartie;
     private Action actionPartie;
 
+
+    //atelier 11
+    private Button boutonConnection;
+    private Action actionConnection;
+
+    private Button boutonDeconnection;
+    private Action actionDeconnection;
+
+
     public VMenuPrincipal(Context context) {
         super(context);
     }
@@ -47,16 +56,22 @@ public class VMenuPrincipal extends Vue {
     private void recupererControles() {
 
         boutonParametres = findViewById(R.id.bouton_parametres);
-
         boutonPartie = findViewById(R.id.bouton_partie);
+
+        boutonConnection = findViewById(R.id.bouton_connection);
+        boutonDeconnection = findViewById(R.id.bouton_deconnection);
 
     }
 
     private void demanderActions() {
 
         actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
-
         actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
+
+
+        //atelier 11
+        actionConnection =  ControleurAction.demanderAction(GCommande.CONNEXION);
+        actionDeconnection =  ControleurAction.demanderAction(GCommande.DECONNEXION);
 
     }
 
@@ -64,8 +79,12 @@ public class VMenuPrincipal extends Vue {
     private void installerListeners() {
 
         installerListenerParametres();
-
         installerListenerPartie();
+
+
+        //atelier 11
+        installerListenerConnexion();
+        installerListenerDeconnexion();
 
     }
 
@@ -90,5 +109,26 @@ public class VMenuPrincipal extends Vue {
         });
 
     }
+
+    private void installerListenerConnexion() {
+
+        boutonConnection.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionConnection.executerDesQuePossible();
+            }
+        });
+    }
+    private void installerListenerDeconnexion() {
+        boutonDeconnection.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionDeconnection.executerDesQuePossible();
+            }
+        });
+    }
+
+
+
 
 }

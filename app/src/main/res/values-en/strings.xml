@@ -16,4 +16,7 @@
     <string name="joueur1">player1</string>
     <string name="joueur2">player2</string>
 
+    <string name="connexion">Connection</string>
+    <string name="deconnexion">Deconnexion</string>
+
 </resources>
