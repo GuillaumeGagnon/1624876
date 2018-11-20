@@ -3,6 +3,7 @@ package ca.cours5b5.guillaumegagnon.controleurs;
 import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.guillaumegagnon.modeles.Modele;
 
@@ -20,11 +21,24 @@ public final class ControleurObservation {
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
+        /*
+        old/ atelelier 11 et moins
+
         Modele modele = ControleurModeles.getModele(nomModele);
 
         observations.put(modele, listenerObservateur);
 
-        listenerObservateur.reagirNouveauModele(modele);
+        listenerObservateur.reagirNouveauModele(modele);*/
+
+
+        //atelier 12
+        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+                observations.put(modele, listenerObservateur);
+                listenerObservateur.reagirNouveauModele(modele);
+            }
+        });
 
     }
 

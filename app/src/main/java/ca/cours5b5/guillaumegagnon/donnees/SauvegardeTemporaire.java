@@ -5,6 +5,7 @@ import android.os.Bundle;
 import java.util.Map;
 
 
+import ca.cours5b5.guillaumegagnon.exceptions.ErreurModele;
 import ca.cours5b5.guillaumegagnon.serialisation.Jsonification;
 
 public class SauvegardeTemporaire extends SourceDeDonnees {
@@ -16,20 +17,21 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde) {
-        /*atelier 11*/
-        if(bundle != null && bundle.containsKey(getCle( cheminSauvegarde) )){
+    public void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement) {
+        /*atelier 12, refonte de la methode*/
+        try {
 
-            String json = bundle.getString(getCle( cheminSauvegarde ));
+            if(bundle != null && bundle.containsKey(cheminSauvegarde)){
 
-            Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
+                String json = bundle.getString(cheminSauvegarde);
+                Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
+                listenerChargement.reagirSucces(objetJson);
+            } else {
+                listenerChargement.reagirErreur(new ErreurModele("Clé introuvable"));
+            }
 
-            return objetJson;
-
-        }else{
-
-            return null;
-
+        }catch (Exception e){
+            listenerChargement.reagirErreur(e);
         }
     }
 
