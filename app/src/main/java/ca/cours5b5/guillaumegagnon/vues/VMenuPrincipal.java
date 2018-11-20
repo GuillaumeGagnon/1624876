@@ -10,6 +10,8 @@ import ca.cours5b5.guillaumegagnon.controleurs.Action;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurAction;
 import ca.cours5b5.guillaumegagnon.global.GCommande;
 
+import static ca.cours5b5.guillaumegagnon.global.GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU;
+
 
 public class VMenuPrincipal extends Vue {
 
@@ -26,6 +28,10 @@ public class VMenuPrincipal extends Vue {
 
     private Button boutonDeconnection;
     private Action actionDeconnection;
+
+
+    private Button boutonOnline;
+    private Action actionOnline;
 
 
     public VMenuPrincipal(Context context) {
@@ -61,6 +67,8 @@ public class VMenuPrincipal extends Vue {
         boutonConnection = findViewById(R.id.bouton_connection);
         boutonDeconnection = findViewById(R.id.bouton_deconnection);
 
+        boutonOnline = findViewById(R.id.button_online);
+
     }
 
     private void demanderActions() {
@@ -72,6 +80,9 @@ public class VMenuPrincipal extends Vue {
         //atelier 11
         actionConnection =  ControleurAction.demanderAction(GCommande.CONNEXION);
         actionDeconnection =  ControleurAction.demanderAction(GCommande.DECONNEXION);
+
+
+        actionOnline = ControleurAction.demanderAction(JOINDRE_OU_CREER_PARTIE_RESEAU);
 
     }
 
@@ -86,10 +97,20 @@ public class VMenuPrincipal extends Vue {
         installerListenerConnexion();
         installerListenerDeconnexion();
 
+        installerListenerOnline();
+
+    }
+
+    private void installerListenerOnline() {
+        boutonOnline.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionOnline.executerDesQuePossible();
+            }
+        });
     }
 
     private void installerListenerPartie() {
-
         boutonPartie.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

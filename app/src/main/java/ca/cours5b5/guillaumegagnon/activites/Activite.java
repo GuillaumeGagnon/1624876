@@ -8,6 +8,7 @@ import ca.cours5b5.guillaumegagnon.donnees.Disque;
 import ca.cours5b5.guillaumegagnon.donnees.SauvegardeTemporaire;
 import ca.cours5b5.guillaumegagnon.donnees.Serveur;
 import ca.cours5b5.guillaumegagnon.modeles.MParametres;
+import ca.cours5b5.guillaumegagnon.donnees.Transition;
 
 
 public abstract class Activite extends AppCompatActivity {
@@ -23,8 +24,7 @@ public abstract class Activite extends AppCompatActivity {
 
     protected void initialiserControleurModeles(Bundle savedInstanceState) {
 
-        ControleurModeles.setSequenceDeChargement(
-                new SauvegardeTemporaire(savedInstanceState), Serveur.getInstance(), Disque.getInstance());
+        ControleurModeles.setSequenceDeChargement( new Transition(getIntent().getExtras()),new SauvegardeTemporaire(savedInstanceState), Serveur.getInstance(), Disque.getInstance());
         
     }
 

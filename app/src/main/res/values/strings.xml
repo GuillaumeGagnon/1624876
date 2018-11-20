@@ -23,4 +23,6 @@
     <string name="connexion">Connexion</string>
     <string name="deconnexion">Connexion</string>
 
+    <string name="online">Jouer en ligne</string>
+
 </resources>

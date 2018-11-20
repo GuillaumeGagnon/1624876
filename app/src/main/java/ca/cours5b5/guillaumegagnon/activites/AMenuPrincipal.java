@@ -17,6 +17,7 @@ import ca.cours5b5.guillaumegagnon.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.guillaumegagnon.global.GCommande;
 import ca.cours5b5.guillaumegagnon.global.GConstantes;
+import ca.cours5b5.guillaumegagnon.modeles.MPartieReseau;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
@@ -26,7 +27,6 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();
-
     }
 
     private void fournirActions() {
@@ -37,6 +37,9 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         //atelier 11
         fournirActionConnexion();
         fournirActionDeconnexion();
+
+        //atelier 13
+        fournirActionJoindreOuCreerPartieReseau();
     }
 
     private void fournirActionOuvrirMenuParametres() {
@@ -66,6 +69,30 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                     }
                 });
     }
+
+
+    //atelier 13
+    private void fournirActionJoindreOuCreerPartieReseau() {
+
+        ControleurAction.fournirAction(this, GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU, new ListenerFournisseur() {
+
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionPartieReseau();
+
+                    }
+                });
+    }
+
+    //atelier 13
+    private void transitionPartieReseau() {
+
+        Intent intentionPartieEnLigne = new Intent(this, APartieReseau.class);
+        intentionPartieEnLigne.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.JSON_PARTIE_RESEAU);
+        startActivity(intentionPartieEnLigne);
+    }
+
 
 
 

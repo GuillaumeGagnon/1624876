@@ -9,7 +9,7 @@
     <string name="largeur">Width: </string>
     <string name="pour_gagner">To win: </string>
 
-    <string name="parametres">Parameters</string>
+    <string name="parametres">Settings</string>
 
     <string name="jouer">Play</string>
 
@@ -18,5 +18,8 @@
 
     <string name="connexion">Connection</string>
     <string name="deconnexion">Deconnexion</string>
+
+
+    <string name="online">Play online</string>
 
 </resources>

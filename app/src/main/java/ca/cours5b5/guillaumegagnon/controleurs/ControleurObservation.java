@@ -43,18 +43,15 @@ public final class ControleurObservation {
     }
 
     public static void lancerObservation(Modele modele) {
-
         final ListenerObservateur listenerObservateur = observations.get(modele);
 
         if (listenerObservateur != null) {
-
             listenerObservateur.reagirChangementAuModele(modele);
 
         }
     }
 
     public static void detruireObservation(Modele modele) {
-
         observations.remove(modele);
 
     }

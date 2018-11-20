@@ -54,8 +54,8 @@ public class MPartie extends Modele implements Fournisseur {
         grille = new MGrille(parametres.getLargeur());
     }
 
-
-    private void fournirActionPlacerJeton() {
+    //atelier 13, private --> protected
+    protected void fournirActionPlacerJeton() {
 
         ControleurAction.fournirAction(this,
                 GCommande.JOUER_COUP_ICI,
