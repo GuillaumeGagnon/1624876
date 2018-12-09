@@ -20,6 +20,7 @@ public class Action {
         ControleurAction.executerDesQuePossible(this);
     }
 
+
     Action cloner(){
 
         Action clone = new Action();
@@ -27,8 +28,12 @@ public class Action {
         clone.fournisseur = fournisseur;
         clone.listenerFournisseur = listenerFournisseur;
 
-        clone.args = (args == null) ? null : args.clone();
+        if(args != null){
+            clone.args = args.clone();
+        }
 
         return clone;
     }
+
+
 }

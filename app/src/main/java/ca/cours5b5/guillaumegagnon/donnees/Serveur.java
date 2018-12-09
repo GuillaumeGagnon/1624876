@@ -8,55 +8,66 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
+import ca.cours5b5.guillaumegagnon.controleurs.ControleurModeles;
 import ca.cours5b5.guillaumegagnon.exceptions.ErreurModele;
 import ca.cours5b5.guillaumegagnon.serialisation.Jsonification;
 
-public class Serveur extends SourceDeDonnees {
-    
-    /*
-     * Serveur est un singleton
-     */
-    
+public final class Serveur extends SourceDeDonnees {
+
     private Serveur(){}
-    
+
     private static final Serveur instance = new Serveur();
 
-    public static Serveur getInstance() {
-        return instance;
-    }
-            
-    
-    
+    public static Serveur getInstance(){return instance;}
+
+
     @Override
     public void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        DatabaseReference noeudModele = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+
+        noeudModele.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    Map<String, Object> objetJson = (Map<String, Object>) snapshot.getValue();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists()){
+
+                    Map<String, Object> objetJson = (Map<String, Object>) dataSnapshot.getValue();
+
                     listenerChargement.reagirSucces(objetJson);
+
                 }else{
-                    listenerChargement.reagirErreur(new ErreurModele("Clé introuvable"));
+
+                    listenerChargement.reagirErreur(new ErreurModele("noeudInexistant: " + cheminSauvegarde));
+
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+                listenerChargement.reagirErreur(databaseError.toException());
+
             }
         });
     }
 
-    @Override
-    public void sauvegarderModele(String cheminSauvegarde, Map <String, Object> objetJson) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
-        databaseReference.setValue(objetJson);
+    @Override
+    public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
+
+        DatabaseReference noeudModele = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeudModele.setValue(objetJson);
+
     }
 
     @Override
     public void detruireSauvegarde(String cheminSauvegarde) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
-        databaseReference.removeValue();
+        DatabaseReference noeudModele = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeudModele.removeValue();
+
     }
+
+
 }

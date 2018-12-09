@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
+		config {
         }
         debug {
             keyAlias 'key0'
@@ -19,7 +19,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
 
     }
     buildTypes {

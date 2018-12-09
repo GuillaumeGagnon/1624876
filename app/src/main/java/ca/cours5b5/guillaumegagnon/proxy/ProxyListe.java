@@ -1,5 +1,6 @@
 package ca.cours5b5.guillaumegagnon.proxy;
 
+
 import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
@@ -20,29 +21,45 @@ import ca.cours5b5.guillaumegagnon.global.GConstantes;
 public class ProxyListe extends Proxy implements Fournisseur {
 
     private ChildEventListener childEventListener;
+
     private Query requete;
+
     private Action actionNouvelItem;
-    private List<DatabaseReference> databaseReferenceList;
+    private Action actionItemDetruit;
 
-
+    private List<DatabaseReference> noeudsAjoutes;
 
     public ProxyListe(String cheminServeur) {
         super(cheminServeur);
-        databaseReferenceList = new ArrayList<>();
+
+        noeudsAjoutes = new ArrayList<>();
+
     }
+
 
     public void setActionNouvelItem(GCommande commande){
-        actionNouvelItem = ControleurAction.demanderAction(commande);
+
+        this.actionNouvelItem = ControleurAction.demanderAction(commande);
+
     }
 
 
+    public void setActionItemDetruit(GCommande commande){
 
-    public void ajouterValeur( Object valeur) {
-        DatabaseReference noeud = super.databaseReference.push();
-        noeud.setValue(valeur);
-        databaseReferenceList.add(noeud);
+        this.actionItemDetruit = ControleurAction.demanderAction(commande);
+
     }
 
+
+    public void ajouterValeur(Object valeur) {
+
+        DatabaseReference noeudAjoute = noeudServeur.push();
+
+        noeudAjoute.setValue(valeur);
+
+        noeudsAjoutes.add(noeudAjoute);
+
+    }
 
 
     @Override
@@ -50,53 +67,92 @@ public class ProxyListe extends Proxy implements Fournisseur {
         super.connecterAuServeur();
 
         creerListener();
+
         requete = getRequete();
+
         requete.addChildEventListener(childEventListener);
+
     }
 
-
-
-    @Override
-    public void detruireValeurs( ) {
-        for (DatabaseReference data: databaseReferenceList) {
-            data.removeValue();
-        }
-    }
 
     private void creerListener(){
+
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                Log.d("help", "onChildAdded");
-                if(actionNouvelItem != null){
-                    actionNouvelItem.setArguments(dataSnapshot.getValue());
-                    actionNouvelItem.executerDesQuePossible();
-                }
-            }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
+                Object valeur = dataSnapshot.getValue();
 
+                if(actionNouvelItem != null){
+
+                    actionNouvelItem.setArguments(valeur);
+
+                    actionNouvelItem.executerDesQuePossible();
+
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                Object valeur = dataSnapshot.getValue();
+
+                if(actionItemDetruit != null){
+
+                    actionItemDetruit.setArguments(valeur);
+
+                    actionItemDetruit.executerDesQuePossible();
+
+                }
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
     }
+
 
     protected Query getRequete(){
-        return super.databaseReference.orderByKey().limitToFirst(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
+
+        return noeudServeur.orderByKey().limitToFirst(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
+
     }
+
 
     @Override
     public void deconnecterDuServeur() {
+
+        noeudServeur.removeEventListener(childEventListener);
+
+        noeudsAjoutes.clear();
+
         super.deconnecterDuServeur();
 
-        requete.removeEventListener(childEventListener);
     }
 
+
+    @Override
+    public void detruireValeurs() {
+
+        for(DatabaseReference noeud : noeudsAjoutes){
+            noeud.removeValue();
+        }
+    }
 
 
 }

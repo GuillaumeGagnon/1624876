@@ -9,6 +9,6 @@ public abstract class Modele {
 
     public abstract void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation;
 
-    public abstract Map<String, Object> enObjetJson() throws ErreurSerialisation;
+    public abstract Map<String, Object> enObjetJson();
 
 }

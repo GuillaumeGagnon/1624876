@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 
 import ca.cours5b5.guillaumegagnon.R;
 
+
 public class VEntete extends AppCompatButton {
 
     public VEntete(Context context) {
@@ -25,6 +26,7 @@ public class VEntete extends AppCompatButton {
     public VEntete(Context context, int colonne) {
         super(context);
 
+        // Atelier 08: afficher la colonne pour deboguer
         setText(colonne + "\n" + getResources().getString(R.string.entete));
 
         this.colonne = colonne;

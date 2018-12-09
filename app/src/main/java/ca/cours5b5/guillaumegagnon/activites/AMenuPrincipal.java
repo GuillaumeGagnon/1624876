@@ -9,15 +9,20 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ca.cours5b5.guillaumegagnon.R;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurAction;
+import ca.cours5b5.guillaumegagnon.modeles.MPartieReseau;
+import ca.cours5b5.guillaumegagnon.usagers.JoueursEnAttente;
+import ca.cours5b5.guillaumegagnon.controleurs.ControleurModeles;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.guillaumegagnon.global.GCommande;
-import ca.cours5b5.guillaumegagnon.global.GConstantes;
-import ca.cours5b5.guillaumegagnon.modeles.MPartieReseau;
+import ca.cours5b5.guillaumegagnon.modeles.MParametres;
+
+import static ca.cours5b5.guillaumegagnon.global.GConstantes.CODE_CONNEXION_FIREBASE;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
@@ -27,30 +32,63 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();
+
     }
+
 
     private void fournirActions() {
 
-        fournirActionOuvrirMenuParametres();
+        fournirActionParametres();
+
         fournirActionDemarrerPartie();
 
-        //atelier 11
         fournirActionConnexion();
+
         fournirActionDeconnexion();
 
-        //atelier 13
         fournirActionJoindreOuCreerPartieReseau();
+
     }
 
-    private void fournirActionOuvrirMenuParametres() {
+
+    private void fournirActionJoindreOuCreerPartieReseau() {
 
         ControleurAction.fournirAction(this,
-                GCommande.OUVRIR_MENU_PARAMETRES,
+                GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU,
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
 
-                        transitionParametres();
+                            transitionAttendreAdversaire();
+                    }
+                });
+    }
+
+
+    private void fournirActionDeconnexion() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.DECONNEXION,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        effectuerDeconnexion();
+
+                    }
+                });
+    }
+
+
+    private void fournirActionConnexion() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.CONNEXION,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        effectuerConnexion();
 
                     }
                 });
@@ -70,112 +108,93 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 });
     }
 
-
-    //atelier 13
-    private void fournirActionJoindreOuCreerPartieReseau() {
-
-        ControleurAction.fournirAction(this, GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU, new ListenerFournisseur() {
-
-                    @Override
-                    public void executer(Object... args) {
-
-                        transitionPartieReseau();
-
-                    }
-                });
-    }
-
-    //atelier 13
-    private void transitionPartieReseau() {
-
-        Intent intentionPartieEnLigne = new Intent(this, APartieReseau.class);
-        intentionPartieEnLigne.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.JSON_PARTIE_RESEAU);
-        startActivity(intentionPartieEnLigne);
-    }
-
-
-
-
-    //atelier 11
-    private void fournirActionConnexion() {
+    private void fournirActionParametres() {
         ControleurAction.fournirAction(this,
-                GCommande.CONNEXION,
+                GCommande.OUVRIR_MENU_PARAMETRES,
                 new ListenerFournisseur() {
+
                     @Override
                     public void executer(Object... args) {
-                        connexion();
+
+                        transitionParametres();
+
                     }
                 });
     }
 
-    private void fournirActionDeconnexion() {
-        ControleurAction.fournirAction(this,
-                GCommande.DECONNEXION,
-                new ListenerFournisseur() {
-                    @Override
-                    public void executer(Object... args) {
-                        deconnexion();
-                    }
-                });
+    private void transitionAttendreAdversaire() {
+
+        Intent intentionAttendreAdversaire = new Intent(this, AEnAttenteAdversaire.class);
+
+        startActivity(intentionAttendreAdversaire);
+
     }
 
 
-
-    private void transitionParametres(){
+    private void transitionParametres() {
 
         Intent intentionParametres = new Intent(this, AParametres.class);
         startActivity(intentionParametres);
 
     }
 
-    private void transitionPartie(){
 
-        Intent intentionParametres = new Intent(this, APartie.class);
-        startActivity(intentionParametres);
+    private void transitionPartie() {
+
+        Intent intentionPartie = new Intent(this, APartie.class);
+        startActivity(intentionPartie);
 
     }
 
 
-    //atelier 11
+    private void effectuerConnexion() {
 
-    private void connexion(){
         List<AuthUI.IdpConfig> fournisseursDeConnexion = new ArrayList<>();
 
-        //different login
-        //google
         fournisseursDeConnexion.add(new AuthUI.IdpConfig.GoogleBuilder().build());
-        //email
         fournisseursDeConnexion.add(new AuthUI.IdpConfig.EmailBuilder().build());
-        //phone
         fournisseursDeConnexion.add(new AuthUI.IdpConfig.PhoneBuilder().build());
 
+        Intent intentionConnexion = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(fournisseursDeConnexion)
+                .build();
 
-        Intent intentionConnexion = AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(fournisseursDeConnexion).build();
+        this.startActivityForResult(intentionConnexion, CODE_CONNEXION_FIREBASE);
 
-
-        this.startActivityForResult(intentionConnexion, GConstantes.CODE_CONNEXION);
     }
 
-    private void deconnexion(){
-        AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                //deconnecté
-            }
-        });
+
+    public void effectuerDeconnexion() {
+
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        // Rien
+
+                    }
+                });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == GConstantes.CODE_CONNEXION) {
+
+        if (requestCode == CODE_CONNEXION_FIREBASE) {
+
+            //IdpResponse response = IdpResponse.fromResultIntent(data);
+
             if (resultCode == RESULT_OK) {
-                //ca marche
+
+                // Connexion réussie
+
             } else {
-                //ou pas
+
+                // connexion échouée
             }
         }
     }
-
 
 
 }

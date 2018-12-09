@@ -1,7 +1,6 @@
 package ca.cours5b5.guillaumegagnon.global;
 
 
-
 public enum GCommande {
 
     CHOISIR_HAUTEUR,
@@ -10,18 +9,29 @@ public enum GCommande {
 
     OUVRIR_MENU_PARAMETRES,
     DEMARRER_PARTIE,
+    DEMARRER_PARTIE_RESEAU,
+    TERMINER_PARTIE,
 
-    JOUER_COUP_ICI,
+    PLACER_JETON_ICI,
 
-
-    //atelier 11
     CONNEXION,
     DECONNEXION,
 
 
-    //atelier 13
+    EFFACER_PARTIE_COURANTE,
+
+    RECEVOIR_COUP_RESEAU,
+
+
     JOINDRE_OU_CREER_PARTIE_RESEAU,
-    RECEVOIR_COUP_RESEAU
+
+    AFFICHER_MESSAGE_GAGNANT,
+
+
+    RECEVOIR_JOUEUR_EN_ATTENTE,
+    RECEVOIR_JOUEUR_INVITE,
+
+
 
 
 }

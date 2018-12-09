@@ -9,17 +9,26 @@
     <string name="largeur">Width: </string>
     <string name="pour_gagner">To win: </string>
 
-    <string name="parametres">Settings</string>
+    <string name="parametres">Parameters</string>
 
     <string name="jouer">Play</string>
+    <string name="jouer_enligne">Play on-line</string>
+
 
     <string name="joueur1">player1</string>
     <string name="joueur2">player2</string>
 
-    <string name="connexion">Connection</string>
-    <string name="deconnexion">Deconnexion</string>
+    <string name="connexion">login</string>
+    <string name="deconnexion">logout</string>
 
+    <string name="effacer_partie_courante">Delete current game</string>
 
-    <string name="online">Play online</string>
+    <string name="en_attente_adversaire">Waiting for an opponent…</string>
+
+    <string name="message_au_gagnant">@@ won!</string>
+
+    <string name="ROUGE">red</string>
+    <string name="JAUNE">yellow</string>
+
 
 </resources>

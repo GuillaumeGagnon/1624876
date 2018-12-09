@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name" translatable="false">GuillaumeGagnon</string>
+    <string name="app_name" translatable="false">guillaumegagnon</string>
 
     <string name="bonjour">Bonjour!</string>
 
@@ -14,15 +14,26 @@
     <string name="parametres">Parametres</string>
 
     <string name="jouer">Jouer</string>
+    <string name="jouer_enligne">Jouer en-ligne</string>
 
-    <string name="entete">↓\n↓</string>
+    <string name="entete">↓\n↓\n↓</string>
 
     <string name="joueur1">joueur1</string>
     <string name="joueur2">joueur2</string>
 
-    <string name="connexion">Connexion</string>
-    <string name="deconnexion">Connexion</string>
 
-    <string name="online">Jouer en ligne</string>
+    <string name="connexion">connexion</string>
+    <string name="deconnexion">déconnexion</string>
+
+    <string name="effacer_partie_courante">Effacer partie courante</string>
+
+    <string name="en_attente_adversaire">En attente d\'un.e adversaire…</string>
+
+
+    <string name="message_au_gagnant">Les @@s ont gagné!</string>
+
+    <string name="ROUGE">rouge</string>
+    <string name="JAUNE">jaune</string>
+
 
 </resources>

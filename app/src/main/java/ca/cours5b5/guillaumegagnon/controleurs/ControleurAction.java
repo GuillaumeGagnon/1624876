@@ -1,5 +1,6 @@
 package ca.cours5b5.guillaumegagnon.controleurs;
 
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,19 +22,13 @@ public final class ControleurAction {
 
         actions = new HashMap<>();
 
-        initialiserActions();
-
-        fileAttenteExecution = new ArrayList<>();
-    }
-
-    private static void initialiserActions() {
-
         for(GCommande commande : GCommande.values()){
 
             actions.put(commande, new Action());
 
         }
 
+        fileAttenteExecution = new ArrayList<>();
     }
 
     public static Action demanderAction(GCommande commande) {
@@ -41,21 +36,16 @@ public final class ControleurAction {
     }
 
     public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur) {
-
         enregistrerFournisseur(fournisseur, commande, listenerFournisseur);
         executerActionsExecutables();
-
     }
 
     static void executerDesQuePossible(Action action) {
-
         ajouterActionEnFileDAttente(action);
         executerActionsExecutables();
-
     }
 
     private static void executerActionsExecutables() {
-
         for (Action action : fileAttenteExecution) {
 
             if (siActionExecutable(action)) {
@@ -68,21 +58,18 @@ public final class ControleurAction {
 
             }
         }
-
     }
 
     static boolean siActionExecutable(Action action) {
 
-        return (action.listenerFournisseur == null) ? false : true;
+        return action.listenerFournisseur != null;
 
     }
 
     private static void lancerObservationSiApplicable(Action action){
 
         if (action.fournisseur instanceof Modele) {
-
             ControleurObservation.lancerObservation((Modele) action.fournisseur);
-
         }
     }
 
@@ -99,7 +86,6 @@ public final class ControleurAction {
         action.fournisseur = fournisseur;
 
         action.listenerFournisseur = listenerFournisseur;
-
     }
 
     private static void ajouterActionEnFileDAttente(Action action) {
@@ -107,7 +93,6 @@ public final class ControleurAction {
         Action clone = action.cloner();
 
         fileAttenteExecution.add(clone);
-
     }
 
     public static void oublierFournisseur(Fournisseur fournisseur) {
@@ -120,7 +105,8 @@ public final class ControleurAction {
                 action.listenerFournisseur = null;
 
             }
-        }
-    }
 
+        }
+
+    }
 }

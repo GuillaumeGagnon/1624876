@@ -23,29 +23,37 @@
 
     <TextView
         android:id="@+id/texte_joueur_un"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/joueur1"
+        android:gravity="center"
+        android:background="@color/ROUGE_FOND"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/texte_joueur_deux"
-        app:layout_constraintStart_toStartOf="@+id/grille"
-        app:layout_constraintTop_toBottomOf="@+id/grille" />
+        app:layout_constraintEnd_toEndOf="@id/grille"
+        app:layout_constraintStart_toStartOf="@id/grille"
+        app:layout_constraintTop_toBottomOf="@id/grille" />
 
     <TextView
         android:id="@+id/texte_joueur_deux"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/joueur2"
+        android:gravity="center"
+        android:background="@color/JAUNE_FOND"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/grille"
-        app:layout_constraintStart_toEndOf="@+id/texte_joueur_un"
-        app:layout_constraintTop_toBottomOf="@+id/grille" />
+        app:layout_constraintEnd_toEndOf="@id/grille"
+        app:layout_constraintStart_toStartOf="@id/grille"
+        app:layout_constraintTop_toBottomOf="@id/grille" />
 </ca.cours5b5.guillaumegagnon.vues.VPartie>

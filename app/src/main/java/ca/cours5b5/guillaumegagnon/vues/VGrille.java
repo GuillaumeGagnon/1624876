@@ -2,6 +2,7 @@ package ca.cours5b5.guillaumegagnon.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
@@ -15,6 +16,7 @@ import ca.cours5b5.guillaumegagnon.global.GCommande;
 import ca.cours5b5.guillaumegagnon.global.GCouleur;
 import ca.cours5b5.guillaumegagnon.modeles.MColonne;
 import ca.cours5b5.guillaumegagnon.modeles.MGrille;
+import ca.cours5b5.guillaumegagnon.modeles.MJeton;
 
 
 public class VGrille extends GridLayout {
@@ -55,7 +57,7 @@ public class VGrille extends GridLayout {
 
     private void demanderActionEntete() {
 
-        actionEntete = ControleurAction.demanderAction(GCommande.JOUER_COUP_ICI);
+        actionEntete = ControleurAction.demanderAction(GCommande.PLACER_JETON_ICI);
 
     }
 
@@ -105,7 +107,7 @@ public class VGrille extends GridLayout {
 
             entetes.add(entete);
 
-            installerListenerEntete(entete);
+            installerListenerEntete(entete, colonne);
 
         }
     }
@@ -128,24 +130,23 @@ public class VGrille extends GridLayout {
         return paramsEntete;
     }
 
-    private void installerListenerEntete(final VEntete entete) {
-
+    private void installerListenerEntete(VEntete entete, final int colonne) {
         entete.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                actionEntete.setArguments(entete.getColonne());
+                actionEntete.setArguments(colonne);
                 actionEntete.executerDesQuePossible();
                 
             }
         });
-
     }
 
-    private void ajouterCases(int hauteur, int largeur) {
 
+    private void ajouterCases(int hauteur, int largeur) {
         for (int colonne = 0; colonne < largeur; colonne++) {
             for (int rangee = 0; rangee < hauteur; rangee++) {
+
 
                 VCase vCase = new VCase(getContext(), rangee, colonne);
                 LayoutParams miseEnPageCase = getMiseEnPageCase(rangee, colonne);
@@ -186,11 +187,11 @@ public class VGrille extends GridLayout {
 
         for(int numeroColonne=0; numeroColonne < colonnes.size(); numeroColonne++){
 
-            List<GCouleur> jetons = colonnes.get(numeroColonne).getJetons();
+            List<MJeton> jetons = colonnes.get(numeroColonne).getJetons();
 
             for(int numeroRangee=0; numeroRangee < jetons.size(); numeroRangee++){
 
-                GCouleur jeton = jetons.get(numeroRangee);
+                MJeton jeton = jetons.get(numeroRangee);
 
                 afficherJeton(numeroColonne, numeroRangee, jeton);
 
@@ -198,7 +199,7 @@ public class VGrille extends GridLayout {
         }
     }
 
-    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
+    private void afficherJeton(int colonne, int rangee, MJeton jeton){
 
         colonnesDeCases.get(colonne).get(rangee).afficherJeton(jeton);
 

@@ -9,4 +9,5 @@ public class ErreurModele extends RuntimeException {
         super(message);
     }
 
+
 }

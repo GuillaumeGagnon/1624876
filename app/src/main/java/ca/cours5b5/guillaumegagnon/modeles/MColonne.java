@@ -1,15 +1,17 @@
 package ca.cours5b5.guillaumegagnon.modeles;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.guillaumegagnon.exceptions.ErreurSerialisation;
 import ca.cours5b5.guillaumegagnon.global.GCouleur;
+import ca.cours5b5.guillaumegagnon.serialisation.AttributSerialisable;
 
 public class MColonne extends Modele {
 
-    private List<GCouleur> jetons;
+    private List<MJeton> jetons;
 
     public MColonne(){
 
@@ -17,15 +19,18 @@ public class MColonne extends Modele {
 
     }
 
-    public List<GCouleur> getJetons() {
+
+    public List<MJeton> getJetons() {
         return jetons;
     }
 
+
     public void placerJeton(GCouleur couleur) {
 
-        jetons.add(couleur);
+        jetons.add(new MJeton(couleur));
 
     }
+
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
@@ -34,15 +39,13 @@ public class MColonne extends Modele {
 
     }
 
+
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
 
         throw new UnsupportedOperationException();
-
+        
     }
 
-    public int nombreDeJetons() {
-        return jetons.size();
-    }
 
 }
