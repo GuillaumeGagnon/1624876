@@ -36,4 +36,7 @@
     <string name="JAUNE">jaune</string>
 
 
+    <string name="partie_ai">Partie contre IA</string>
+
+
 </resources>

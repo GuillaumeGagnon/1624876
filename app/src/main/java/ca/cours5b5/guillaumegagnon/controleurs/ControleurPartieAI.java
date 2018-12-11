@@ -1,17 +1,21 @@
 package ca.cours5b5.guillaumegagnon.controleurs;
 
 
+import android.util.Log;
+
 import ca.cours5b5.guillaumegagnon.global.GCommande;
 import ca.cours5b5.guillaumegagnon.global.GCouleur;
 
-public final class ControleurPartie {
+public final class ControleurPartieAI {
 
-    private ControleurPartie(){}
+    private ControleurPartieAI(){}
 
-    private static final ControleurPartie instance = new ControleurPartie();
-    public static ControleurPartie getInstance(){return instance;}
+    private static final ControleurPartieAI instance = new ControleurPartieAI();
+    public static ControleurPartieAI getInstance(){return instance;}
 
     public void gagnerPartie(GCouleur couleurGagnante){
+
+        Log.d("debug_AI", "ControleurPartieAI/gagnerPartie");
 
         Action actionTerminerPartie = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE);
 

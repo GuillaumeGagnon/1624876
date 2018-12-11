@@ -34,6 +34,10 @@ public class VMenuPrincipal extends Vue {
     private Button boutonPartie;
     private Action actionPartie;
 
+    //projet AI
+    private Button boutonPartieAI;
+    private Action actionPartieAI;
+
     private Button boutonPartieReseau;
     private Action actionPartieReseau;
 
@@ -67,6 +71,9 @@ public class VMenuPrincipal extends Vue {
 
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
+        //AI
+        boutonPartieAI = findViewById(R.id.bouton_partie_ia);
+
     }
 
     private void demanderActions() {
@@ -81,6 +88,8 @@ public class VMenuPrincipal extends Vue {
 
         actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
+        //AI
+        actionPartieAI = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE_AI);
 
     }
 
@@ -124,6 +133,14 @@ public class VMenuPrincipal extends Vue {
 
                 }
 
+            }
+        });
+
+        //AI
+        boutonPartieAI.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionPartieAI.executerDesQuePossible();
             }
         });
     }

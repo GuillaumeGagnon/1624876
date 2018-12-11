@@ -1,6 +1,7 @@
 package ca.cours5b5.guillaumegagnon.activites;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import ca.cours5b5.guillaumegagnon.R;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurAction;
@@ -8,15 +9,17 @@ import ca.cours5b5.guillaumegagnon.controleurs.ControleurModeles;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.guillaumegagnon.global.GCommande;
-import ca.cours5b5.guillaumegagnon.modeles.MPartie;
+import ca.cours5b5.guillaumegagnon.modeles.MPartieAI;
 
 
-public class APartie extends Activite implements Fournisseur {
+public class APartieAI extends Activite implements Fournisseur {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_partie);
+        setContentView(R.layout.activity_partie_ai);
+
+        Log.d("debug_AI", "APartieAI/onCreate");
 
         fournirActionTerminerPartie();
 
@@ -41,12 +44,13 @@ public class APartie extends Activite implements Fournisseur {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d("debug_AI", "APartieAI/onPause");
         sauvegarderPartie();
     }
 
 
     protected void sauvegarderPartie(){
-        ControleurModeles.sauvegarderModele(MPartie.class.getSimpleName());
+        ControleurModeles.sauvegarderModele(MPartieAI.class.getSimpleName());
     }
 
 

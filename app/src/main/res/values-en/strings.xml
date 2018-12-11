@@ -31,4 +31,7 @@
     <string name="JAUNE">yellow</string>
 
 
+    <string name="partie_ai">Play against AI</string>
+
+
 </resources>

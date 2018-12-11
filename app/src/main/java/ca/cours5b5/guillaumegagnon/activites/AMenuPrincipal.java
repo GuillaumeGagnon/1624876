@@ -3,6 +3,7 @@ package ca.cours5b5.guillaumegagnon.activites;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
+        Log.d("debug_AI", "AMenuPrincipal/onCreate");
+
         fournirActions();
 
     }
@@ -48,7 +51,35 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
         fournirActionJoindreOuCreerPartieReseau();
 
+        fournirActionDemarrerPartieAI();
+
     }
+
+    // projet AI
+    private void fournirActionDemarrerPartieAI() {
+
+        Log.d("debug_AI", "AMenuPrincipal/fournirActionDemarrerPartieAI");
+
+        ControleurAction.fournirAction(this,
+                GCommande.DEMARRER_PARTIE_AI,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        Log.d("debug_AI", "AMenuPrincipal/fournirActionDemarrerPartieAI/GCommande");
+                        transitionPartieAI();
+
+                    }
+                });
+    }
+
+    private void transitionPartieAI() {
+        Log.d("debug_AI", "AMenuPrincipal/transitionPartieAI");
+        Intent intentionPartieAI = new Intent(this, APartieAI.class);
+        Log.d("debug_AI", "AMenuPrincipal/transitionPartieAI/intention");
+        startActivity(intentionPartieAI);
+
+    }
+
 
 
     private void fournirActionJoindreOuCreerPartieReseau() {

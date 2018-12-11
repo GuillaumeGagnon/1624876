@@ -1,12 +1,14 @@
 package ca.cours5b5.guillaumegagnon.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurAction;
-import ca.cours5b5.guillaumegagnon.controleurs.ControleurPartie;
+import ca.cours5b5.guillaumegagnon.controleurs.ControleurPartieAI;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.guillaumegagnon.exceptions.ErreurAction;
@@ -15,23 +17,26 @@ import ca.cours5b5.guillaumegagnon.global.GCommande;
 import ca.cours5b5.guillaumegagnon.global.GCouleur;
 import ca.cours5b5.guillaumegagnon.serialisation.AttributSerialisable;
 
-public class MPartie extends Modele implements Fournisseur {
+public class MPartieAI extends Modele implements Fournisseur{
 
 
-    @AttributSerialisable
-    public MParametresPartie parametres;
-    private final String __parametres = "parametres";
-
-    @AttributSerialisable
-    public List<Integer> listeCoups;
-    private final String __listeCoups = "listeCoups";
-
-    private MGrille grille;
     private GCouleur couleurCourante;
+    private MGrille grille;
 
-    public MPartie(MParametresPartie parametres) {
+    @AttributSerialisable
+    public MParametresPartie parametresAI;
+    private final String __parametresAI = "parametresAI";
 
-        this.parametres = parametres;
+    @AttributSerialisable
+    public List<Integer> listeCoupsAI;
+    private final String __listeCoupsAI = "listeCoupsAI";
+
+
+
+    public MPartieAI(MParametresPartie parametres) {
+
+        Log.d("debug_AI", "MPartieAI");
+        this.parametresAI = parametres;
 
         initialiser();
 
@@ -44,7 +49,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     private void initialiser() {
-        listeCoups = new ArrayList<>();
+        listeCoupsAI = new ArrayList<>();
     }
 
     private void initialiserCouleurCourante() {
@@ -53,7 +58,7 @@ public class MPartie extends Modele implements Fournisseur {
 
 
     private void initialiserGrille() {
-        grille = new MGrille(parametres.getLargeur());
+        grille = new MGrille(parametresAI.getLargeur());
     }
 
 
@@ -92,12 +97,12 @@ public class MPartie extends Modele implements Fournisseur {
 
     protected void jouerCoupLegal(int colonne) {
 
-        listeCoups.add(colonne);
+        listeCoupsAI.add(colonne);
         grille.placerJeton(colonne, couleurCourante);
-        
-        if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
 
-            ControleurPartie.getInstance().gagnerPartie(couleurCourante);
+        if (grille.siCouleurGagne(couleurCourante, parametresAI.getPourGagner())) {
+
+            ControleurPartieAI.getInstance().gagnerPartie(couleurCourante);
 
         } else {
 
@@ -110,7 +115,7 @@ public class MPartie extends Modele implements Fournisseur {
 
         MColonne mColonne = grille.getColonnes().get(colonne);
 
-        return mColonne.getJetons().size() < parametres.getHauteur();
+        return mColonne.getJetons().size() < parametresAI.getHauteur();
 
     }
 
@@ -134,20 +139,19 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     public MParametresPartie getParametres() {
-        return parametres;
+        return parametresAI;
     }
-
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
 
-        parametres.aPartirObjetJson((Map<String, Object>) objetJson.get(__parametres));
+        parametresAI.aPartirObjetJson((Map<String, Object>) objetJson.get(__parametresAI));
 
         initialiserCouleurCourante();
 
         initialiserGrille();
 
-        List<String> listeCoupsObjetJson = (List<String>) objetJson.get(__listeCoups);
+        List<String> listeCoupsObjetJson = (List<String>) objetJson.get(__listeCoupsAI);
 
         if (listeCoupsObjetJson != null) {
 
@@ -173,7 +177,7 @@ public class MPartie extends Modele implements Fournisseur {
 
     private void rejouerLesCoups(List<Integer> coupsARejouer) {
 
-        listeCoups.clear();
+        listeCoupsAI.clear();
 
         for(Integer coup : coupsARejouer){
 
@@ -182,13 +186,12 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
-
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(__parametres, parametres.enObjetJson());
-        objetJson.put(__listeCoups, listeCoupsEnObjetJson(listeCoups));
+        objetJson.put(__parametresAI, parametresAI.enObjetJson());
+        objetJson.put(__listeCoupsAI, listeCoupsEnObjetJson(listeCoupsAI));
 
         return objetJson;
 
