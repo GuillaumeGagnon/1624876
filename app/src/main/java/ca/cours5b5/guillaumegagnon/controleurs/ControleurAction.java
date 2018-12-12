@@ -29,18 +29,30 @@ public final class ControleurAction {
         }
 
         fileAttenteExecution = new ArrayList<>();
+
+
+
+        //debuging
+        for(GCommande commande : GCommande.values()){
+
+            Log.d("debug_AI", "static initializer: " + commande.name());
+
+        }
     }
 
     public static Action demanderAction(GCommande commande) {
+        Log.d("debug_AI", "demanderAction: " + commande.name());
         return actions.get(commande);
     }
 
     public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur) {
+        Log.d("debug_AI", "fournirAction: " + commande.name());
         enregistrerFournisseur(fournisseur, commande, listenerFournisseur);
         executerActionsExecutables();
     }
 
     static void executerDesQuePossible(Action action) {
+        Log.d("debug_AI", "executerDesQuePossible: " + action.toString());
         ajouterActionEnFileDAttente(action);
         executerActionsExecutables();
     }
@@ -61,7 +73,7 @@ public final class ControleurAction {
     }
 
     static boolean siActionExecutable(Action action) {
-
+        
         return action.listenerFournisseur != null;
 
     }
@@ -75,12 +87,14 @@ public final class ControleurAction {
 
     private static synchronized void executerMaintenant(Action action){
 
+        Log.d("debug_AI", "executerMaintenant: " + action.toString());
         action.listenerFournisseur.executer(action.args);
 
     }
 
     private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur) {
 
+        Log.d("debug_AI", "enregistrerFournisseur: " + commande.name());
         Action action = actions.get(commande);
 
         action.fournisseur = fournisseur;

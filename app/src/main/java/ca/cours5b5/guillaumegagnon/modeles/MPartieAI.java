@@ -1,12 +1,10 @@
 package ca.cours5b5.guillaumegagnon.modeles;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurAction;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurPartieAI;
 import ca.cours5b5.guillaumegagnon.controleurs.interfaces.Fournisseur;
@@ -30,8 +28,6 @@ public class MPartieAI extends Modele implements Fournisseur{
     @AttributSerialisable
     public List<Integer> listeCoupsAI;
     private final String __listeCoupsAI = "listeCoupsAI";
-
-
 
     public MPartieAI(MParametresPartie parametres) {
 

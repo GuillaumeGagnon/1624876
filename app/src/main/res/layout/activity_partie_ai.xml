@@ -7,7 +7,7 @@
     tools:context="ca.cours5b5.guillaumegagnon.activites.APartieAI">
 
     <ca.cours5b5.guillaumegagnon.vues.VGrille
-        android:id="@+id/grille"
+        android:id="@+id/grille_ai"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="64dp"
@@ -22,7 +22,7 @@
     </ca.cours5b5.guillaumegagnon.vues.VGrille>
 
     <TextView
-        android:id="@+id/texte_joueur_un"
+        android:id="@+id/texte_joueur_un_ai"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -35,12 +35,12 @@
         android:textStyle="bold"
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/grille"
-        app:layout_constraintStart_toStartOf="@id/grille"
-        app:layout_constraintTop_toBottomOf="@id/grille" />
+        app:layout_constraintEnd_toEndOf="@id/grille_ai"
+        app:layout_constraintStart_toStartOf="@id/grille_ai"
+        app:layout_constraintTop_toBottomOf="@id/grille_ai" />
 
     <TextView
-        android:id="@+id/texte_joueur_deux"
+        android:id="@+id/texte_joueur_deux_ai"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -53,8 +53,8 @@
         android:textStyle="bold"
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/grille"
-        app:layout_constraintStart_toStartOf="@id/grille"
-        app:layout_constraintTop_toBottomOf="@id/grille" />
+        app:layout_constraintEnd_toEndOf="@id/grille_ai"
+        app:layout_constraintStart_toStartOf="@id/grille_ai"
+        app:layout_constraintTop_toBottomOf="@id/grille_ai" />
 
 </ca.cours5b5.guillaumegagnon.vues.VPartieAI>

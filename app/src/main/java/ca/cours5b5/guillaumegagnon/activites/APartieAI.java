@@ -21,15 +21,15 @@ public class APartieAI extends Activite implements Fournisseur {
 
         Log.d("debug_AI", "APartieAI/onCreate");
 
-        fournirActionTerminerPartie();
+        fournirActionTerminerPartieAI();
 
     }
 
 
-    private void fournirActionTerminerPartie() {
+    private void fournirActionTerminerPartieAI() {
 
         ControleurAction.fournirAction(this,
-                GCommande.TERMINER_PARTIE,
+                GCommande.TERMINER_PARTIE_AI,
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
@@ -45,11 +45,11 @@ public class APartieAI extends Activite implements Fournisseur {
     protected void onPause() {
         super.onPause();
         Log.d("debug_AI", "APartieAI/onPause");
-        sauvegarderPartie();
+        sauvegarderPartieAI();
     }
 
 
-    protected void sauvegarderPartie(){
+    protected void sauvegarderPartieAI(){
         ControleurModeles.sauvegarderModele(MPartieAI.class.getSimpleName());
     }
 

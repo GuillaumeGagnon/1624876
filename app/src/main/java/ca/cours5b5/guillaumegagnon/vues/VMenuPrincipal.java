@@ -2,6 +2,7 @@ package ca.cours5b5.guillaumegagnon.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -57,6 +58,7 @@ public class VMenuPrincipal extends Vue {
         installerListeners();
 
         ajusterTexteConnexionDeconnexion();
+        Log.d("debug_AI", "onFinishInflate: fin");
 
     }
 
@@ -72,7 +74,7 @@ public class VMenuPrincipal extends Vue {
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
         //AI
-        boutonPartieAI = findViewById(R.id.bouton_partie_ia);
+        boutonPartieAI = findViewById(R.id.bouton_partie_ai);
 
     }
 
@@ -139,7 +141,7 @@ public class VMenuPrincipal extends Vue {
         //AI
         boutonPartieAI.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 actionPartieAI.executerDesQuePossible();
             }
         });

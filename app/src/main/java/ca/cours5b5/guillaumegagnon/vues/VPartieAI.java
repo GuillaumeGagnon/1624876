@@ -14,7 +14,7 @@ import ca.cours5b5.guillaumegagnon.modeles.MPartieAI;
 import ca.cours5b5.guillaumegagnon.modeles.Modele;
 
 
-public class VPartieAI extends VPartie {
+public class VPartieAI extends Vue {
 
 
     private VGrille grille;
@@ -52,10 +52,10 @@ public class VPartieAI extends VPartie {
 
     private void initialiser() {
 
-        grille = findViewById(R.id.grille);
+        grille = findViewById(R.id.grille_ai);
 
-        texteJoueurUn = findViewById(R.id.texte_joueur_un);
-        texteJoueurDeux = findViewById(R.id.texte_joueur_deux);
+        texteJoueurUn = findViewById(R.id.texte_joueur_un_ai);
+        texteJoueurDeux = findViewById(R.id.texte_joueur_deux_ai);
 
 
 

@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activites.AParametres"></activity>
         <activity android:name=".activites.APartie"></activity>
+        <activity android:name=".activites.APartieAI"></activity>
         <activity android:name=".activites.APartieReseau"></activity>
         <activity android:name=".activites.AMenuPrincipal">
             <intent-filter>

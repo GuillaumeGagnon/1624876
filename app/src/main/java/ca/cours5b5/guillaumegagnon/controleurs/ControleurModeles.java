@@ -17,6 +17,7 @@ import ca.cours5b5.guillaumegagnon.global.GConstantes;
 import ca.cours5b5.guillaumegagnon.modeles.Identifiable;
 import ca.cours5b5.guillaumegagnon.modeles.MParametres;
 import ca.cours5b5.guillaumegagnon.modeles.MPartie;
+import ca.cours5b5.guillaumegagnon.modeles.MPartieAI;
 import ca.cours5b5.guillaumegagnon.modeles.MPartieReseau;
 import ca.cours5b5.guillaumegagnon.modeles.Modele;
 import ca.cours5b5.guillaumegagnon.donnees.Disque;
@@ -225,6 +226,12 @@ public final class ControleurModeles {
 
             creerPartie(listenerGetModele);
 
+        }
+        //AI
+        else if(nomModele.equals(MPartieAI.class.getSimpleName())){
+
+            creerPartieAI(listenerGetModele);
+
         }else if(nomModele.equals(MPartieReseau.class.getSimpleName())){
 
             creerPartieReseau(listenerGetModele);
@@ -245,6 +252,20 @@ public final class ControleurModeles {
                 MParametres mParametres = (MParametres) modele;
 
                 listenerGetModele.reagirAuModele(new MPartie(mParametres.getParametresPartie().cloner()));
+
+            }
+        });
+    }
+
+    //PROJET AI
+    private static void creerPartieAI(final ListenerGetModele listenerGetModele) {
+        getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+
+                MParametres mParametres = (MParametres) modele;
+
+                listenerGetModele.reagirAuModele(new MPartieAI(mParametres.getParametresPartie().cloner()));
 
             }
         });

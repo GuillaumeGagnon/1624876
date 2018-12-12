@@ -17,7 +17,7 @@ public final class ControleurPartieAI {
 
         Log.d("debug_AI", "ControleurPartieAI/gagnerPartie");
 
-        Action actionTerminerPartie = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE);
+        Action actionTerminerPartie = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE_AI);
 
         Action actionAfficherMessage = ControleurAction.demanderAction(GCommande.AFFICHER_MESSAGE_GAGNANT);
 

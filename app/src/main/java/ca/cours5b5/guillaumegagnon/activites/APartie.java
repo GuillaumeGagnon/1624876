@@ -2,6 +2,7 @@ package ca.cours5b5.guillaumegagnon.activites;
 
 import android.os.Bundle;
 
+
 import ca.cours5b5.guillaumegagnon.R;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurAction;
 import ca.cours5b5.guillaumegagnon.controleurs.ControleurModeles;
@@ -18,7 +19,9 @@ public class APartie extends Activite implements Fournisseur {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partie);
 
+
         fournirActionTerminerPartie();
+
 
     }
 
@@ -42,6 +45,7 @@ public class APartie extends Activite implements Fournisseur {
     protected void onPause() {
         super.onPause();
         sauvegarderPartie();
+
     }
 
 
