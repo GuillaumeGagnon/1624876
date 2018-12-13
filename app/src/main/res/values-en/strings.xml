@@ -17,11 +17,12 @@
 
     <string name="joueur1">player1</string>
     <string name="joueur2">player2</string>
+    <string name="ai">AI</string>
 
     <string name="connexion">login</string>
     <string name="deconnexion">logout</string>
 
-    <string name="effacer_partie_courante">Delete current game</string>
+    <string name="effacer_partie_courante">Delete all current games</string>
 
     <string name="en_attente_adversaire">Waiting for an opponent…</string>
 

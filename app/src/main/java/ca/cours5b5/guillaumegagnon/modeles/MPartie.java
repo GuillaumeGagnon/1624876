@@ -26,8 +26,9 @@ public class MPartie extends Modele implements Fournisseur {
     public List<Integer> listeCoups;
     private final String __listeCoups = "listeCoups";
 
-    private MGrille grille;
-    private GCouleur couleurCourante;
+    //test pour acces ia private --> protected
+    protected MGrille grille;
+    protected GCouleur couleurCourante;
 
     public MPartie(MParametresPartie parametres) {
 
@@ -43,16 +44,17 @@ public class MPartie extends Modele implements Fournisseur {
 
     }
 
-    private void initialiser() {
+    protected void initialiser() {
         listeCoups = new ArrayList<>();
     }
 
-    private void initialiserCouleurCourante() {
+    //private --> protected
+    protected void initialiserCouleurCourante() {
         couleurCourante = GCouleur.ROUGE;
     }
 
-
-    private void initialiserGrille() {
+    //private --> protected
+    protected void initialiserGrille() {
         grille = new MGrille(parametres.getLargeur());
     }
 
@@ -114,8 +116,8 @@ public class MPartie extends Modele implements Fournisseur {
 
     }
 
-
-    private void prochaineCouleurCourante() {
+    //private --> protected
+    protected void prochaineCouleurCourante() {
 
         switch (couleurCourante) {
 
@@ -157,8 +159,8 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
-
-    private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
+    //private --> protected
+    protected List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
         List<Integer> listeCoups = new ArrayList<>();
 
         for (String coupChaine : listeCoupsObjetJson) {
@@ -170,8 +172,8 @@ public class MPartie extends Modele implements Fournisseur {
         return listeCoups;
     }
 
-
-    private void rejouerLesCoups(List<Integer> coupsARejouer) {
+    //private --> protected
+    protected void rejouerLesCoups(List<Integer> coupsARejouer) {
 
         listeCoups.clear();
 
@@ -194,8 +196,8 @@ public class MPartie extends Modele implements Fournisseur {
 
     }
 
-
-    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
+    //private --> protected
+    protected List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
         List<String> listeCoupsObjetJson = new ArrayList<>();
 
         for (Integer coup : listeCoups) {

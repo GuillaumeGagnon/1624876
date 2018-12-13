@@ -11,6 +11,7 @@ import ca.cours5b5.guillaumegagnon.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.guillaumegagnon.global.GCommande;
 import ca.cours5b5.guillaumegagnon.modeles.MParametres;
 import ca.cours5b5.guillaumegagnon.modeles.MPartie;
+import ca.cours5b5.guillaumegagnon.modeles.MPartieAI;
 
 
 public class AParametres extends Activite implements Fournisseur{
@@ -35,6 +36,7 @@ public class AParametres extends Activite implements Fournisseur{
                     public void executer(Object... args) {
 
                         ControleurModeles.detruireModele(MPartie.class.getSimpleName());
+                        ControleurModeles.detruireModele(MPartieAI.class.getSimpleName());
 
                     }
                 });
