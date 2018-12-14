@@ -52,8 +52,15 @@ public class MPartieAI extends MPartie implements Fournisseur{
                             Log.d("debug_ai", "executer: joueur " + colonne + " \n nombre coup : " + nombreCoupPartieAI);
                             // on fait jouer l'IA apres chaque coup du joueur
                             //ce n'est pas 100% optimal car l'ia tente de jouer meme si le joueur gagne mais ca marche
-                            jouerCoup(ai(0));
-                            nombreCoupPartieAI++;
+                            if(!grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())){
+                                if(parametres.getForceAI() == 0){
+                                    jouerCoup(aiAleatoire());
+                                } else{
+                                    jouerCoup(ai());// on laisse l'IA jouer seulement si le joueur ne gagne pas
+                                }
+                                nombreCoupPartieAI++;
+                            }
+
 
 
                         } catch (ClassCastException e) {
@@ -83,24 +90,24 @@ public class MPartieAI extends MPartie implements Fournisseur{
     }
 
     //IA
-    private int ai(){
+    private int aiAleatoire(){
+        Log.d("debug", "aiAleatoire: ");
         int coup_ai = ThreadLocalRandom.current().nextInt(0, parametres.getLargeur());
-        Log.d("debug_ai", "avant while (ia): " + coup_ai);
         while(!siCoupLegal(coup_ai)) {
             coup_ai = ThreadLocalRandom.current().nextInt(0, parametres.getLargeur());
-            Log.d("debug_ai", "dans while: (ia)" + coup_ai);
         }
-        Log.d("debug_ai", "epres while (ia): " + coup_ai);
         return coup_ai;
     }
 
-    private int ai(int mode){
+    private int ai(){
         nombreCoupPartieAI = 0;
         coup_gagnant = 0;
         coupAJouer = 1;
         onRemonte = false;
         profondeur = 0;
         resultat = null;
+
+        Log.d("FORCE_AI","ForceAI : " + parametres.getForceAI());
 
         AI objetAI = new AI(parametres, grille);
         int temps_debug = recursif(objetAI)[1];
@@ -110,7 +117,7 @@ public class MPartieAI extends MPartie implements Fournisseur{
 
     private int[] recursif(AI objetAI){
         profondeur++;
-        if(profondeur == 10000){
+        if(profondeur == parametres.getForceAI()){ //on limite à 100/1'000/10'000 pour éviter les StackOverflow exemple "java.lang.StackOverflowError: stack size 8MB"
             onRemonte = true;
         }
         if(onRemonte){
@@ -149,13 +156,16 @@ public class MPartieAI extends MPartie implements Fournisseur{
                             couleurCouranteAI = GCouleur.ROUGE;
                     }
                     int[] temp = recursif(objetAI_recursif);
-                    int score = -temp[0];
-                    if (score > meilleurScorePourLeMoment) {
-                        meilleurScorePourLeMoment = score; // keep track of best possible score so far.
-                        coupAJouer = temp[1];
-                        Log.d("debugageAI", "recursif/for#2/if: ");
-                        this.resultat = new int[] {meilleurScorePourLeMoment, coupAJouer, profondeur};
+                    if(temp != null){
+                        int score = -temp[0];
+                        if (score > meilleurScorePourLeMoment) {
+                            meilleurScorePourLeMoment = score; // keep track of best possible score so far.
+                            coupAJouer = temp[1];
+                            Log.d("debugageAI", "recursif/for#2/if: ");
+                            this.resultat = new int[] {meilleurScorePourLeMoment, coupAJouer, profondeur};
+                        }
                     }
+
                 }
             }
             resultat = new int[]{meilleurScorePourLeMoment, coupAJouer, profondeur};

@@ -30,6 +30,9 @@ public class VParametres extends Vue {
     private Spinner spinnerLargeur;
     private Spinner spinnerPourGagner;
 
+    //AI
+    private Spinner spinnerForceAI;
+
     private Button boutonEffacerPartieCourante;
 
 
@@ -61,12 +64,14 @@ public class VParametres extends Vue {
         spinnerHauteur = findViewById(R.id.spinner_hauteur);
         spinnerLargeur = findViewById(R.id.spinner_largeur);
         spinnerPourGagner = findViewById(R.id.spinner_pour_gagner);
+        spinnerForceAI = findViewById(R.id.spinner_force_ai);
 
         boutonEffacerPartieCourante = findViewById(R.id.bouton_effacer_partie);
 
         initialiserSpinner(spinnerHauteur);
         initialiserSpinner(spinnerLargeur);
         initialiserSpinner(spinnerPourGagner);
+        initialiserSpinner(spinnerForceAI);
 
     }
 
@@ -80,7 +85,32 @@ public class VParametres extends Vue {
         installerListenerLargeur();
         installerListenerPourGagner();
         installerListenerEffacerPartieCourante();
+
+        //AI
+        installerListenerForceAI();
     }
+    //AI
+    private void installerListenerForceAI(){
+
+        final Action actionForceAI = ControleurAction.demanderAction(GCommande.CHOISIR_FORCE_AI);
+
+        spinnerForceAI.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int leChoix = (int) parent.getAdapter().getItem(position);
+
+                actionForceAI.setArguments(leChoix);
+                actionForceAI.executerDesQuePossible();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
 
 
     private void installerListenerHauteur(){
@@ -195,7 +225,17 @@ public class VParametres extends Vue {
         afficherChoixHauteur(mParametres);
         afficherChoixLargeur(mParametres);
         afficherChoixPourGagner(mParametres);
+
+        //AI
+        afficherChoixForceAI(mParametres);
     }
+    //AI
+    private void afficherChoixForceAI(MParametres mParametres){
+        mettreAJourSpinner(spinnerForceAI,
+                mParametres.getChoixForceAI(),
+                mParametres.getParametresPartie().getForceAI());
+    }
+
 
     private void afficherChoixHauteur(MParametres mParametres){
         mettreAJourSpinner(spinnerHauteur,
@@ -214,6 +254,7 @@ public class VParametres extends Vue {
                 mParametres.getChoixPourGagner(),
                 mParametres.getParametresPartie().getPourGagner());
     }
+
 
     private void mettreAJourSpinner(Spinner spinner, List<Integer> choix, int selectionCourante){
         ArrayAdapter<Integer> adapter = (ArrayAdapter<Integer>) spinner.getAdapter();

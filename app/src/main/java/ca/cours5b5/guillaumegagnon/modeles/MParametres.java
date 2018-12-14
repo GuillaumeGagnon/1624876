@@ -24,6 +24,7 @@ public class MParametres extends Modele implements Fournisseur {
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
+    private List<Integer> choixForceAI;
 
     public MParametres() {
         super();
@@ -52,6 +53,10 @@ public class MParametres extends Modele implements Fournisseur {
         return parametresPartie;
     }
 
+    //AI
+    public List<Integer> getChoixForceAI() {
+        return choixForceAI;
+    }
 
     private void fournirActions() {
 
@@ -59,7 +64,39 @@ public class MParametres extends Modele implements Fournisseur {
         fournirActionLargeur();
         fournirActionPourGagner();
 
+        //AI
+        fournirActionAI();
+
     }
+
+    //***************************************************
+    // AI
+    private void fournirActionAI() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.CHOISIR_FORCE_AI,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        try {
+
+                            getParametresPartie().setForceAI((Integer) args[0]);
+                            genererListeChoixPourGagner();
+
+                        } catch (ClassCastException
+                                | IndexOutOfBoundsException e) {
+
+                            throw new ErreurAction(e);
+
+                        }
+                    }
+                });
+    }
+
+
+
+
 
 
     private void fournirActionHauteur() {
@@ -139,6 +176,9 @@ public class MParametres extends Modele implements Fournisseur {
         genererListeChoixLargeur();
         genererListeChoixPourGagner();
 
+        //AI
+        genererListeChoixForeceAI();
+
     }
 
     private List<Integer> genererListeChoix(int min, int max) {
@@ -162,6 +202,21 @@ public class MParametres extends Modele implements Fournisseur {
     private void genererListeChoixLargeur() {
 
         choixLargeur = genererListeChoix(GConstantes.LARGEUR_MIN, GConstantes.LARGEUR_MAX);
+
+    }
+
+
+    //AI
+    private void genererListeChoixForeceAI() {
+
+        List<Integer> listeChoix = new ArrayList<>();
+
+        listeChoix.add(0);
+        for (int i = GConstantes.FORCEAI_MIN; i <= GConstantes.FORCEAI_MAX; i += 1000) {
+            listeChoix.add(i);
+        }
+
+        choixForceAI = listeChoix;
 
     }
 

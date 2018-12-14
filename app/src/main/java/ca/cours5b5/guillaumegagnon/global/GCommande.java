@@ -3,6 +3,9 @@ package ca.cours5b5.guillaumegagnon.global;
 
 public enum GCommande {
 
+    //AI
+    CHOISIR_FORCE_AI,
+
     CHOISIR_HAUTEUR,
     CHOISIR_LARGEUR,
     CHOISIR_POUR_GAGNER,

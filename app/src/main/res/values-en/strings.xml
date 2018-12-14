@@ -33,6 +33,7 @@
 
 
     <string name="partie_ai">Play against AI</string>
+    <string name="forceAI">AI strength</string>
 
 
 </resources>

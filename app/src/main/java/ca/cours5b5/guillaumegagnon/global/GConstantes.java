@@ -32,4 +32,9 @@ public final class GConstantes {
 
     public static final int DELAIS_MESSAGE_AVEC_ACTION=2000;
 
+
+    public static final int FORCEAI_MIN = 500;
+    public static final int FORCEAI_MAX = 9500;
+    public  static final int FORCEAI = 5500;
+
 }

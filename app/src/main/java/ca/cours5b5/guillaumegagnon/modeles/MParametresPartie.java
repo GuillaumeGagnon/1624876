@@ -9,6 +9,11 @@ import ca.cours5b5.guillaumegagnon.serialisation.AttributSerialisable;
 
 public class MParametresPartie extends Modele {
 
+    //ia
+    @AttributSerialisable
+    public Integer forceAI;
+    protected final String __forceAI = "forceAI";
+
     @AttributSerialisable
     public Integer hauteur;
     protected final String __hauteur = "hauteur";
@@ -28,6 +33,8 @@ public class MParametresPartie extends Modele {
         mParametresPartie.setHauteur(hauteur);
         mParametresPartie.setLargeur(largeur);
         mParametresPartie.setPourGagner(pourGagner);
+        mParametresPartie.setForceAI(forceAI);
+
 
         return mParametresPartie;
 
@@ -40,6 +47,8 @@ public class MParametresPartie extends Modele {
         hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
         largeur = GConstantes.LARGEUR_PAR_DEFAUT;
         pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
+
+        forceAI = GConstantes.FORCEAI;
 
     }
 
@@ -91,6 +100,11 @@ public class MParametresPartie extends Modele {
                     pourGagner = Integer.valueOf(chaineValeur);
                     break;
 
+                //AI
+                case __forceAI:
+                    forceAI = Integer.valueOf(chaineValeur);
+                    break;
+
                 default:
 
                     throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
@@ -107,10 +121,19 @@ public class MParametresPartie extends Modele {
         objetJson.put(__hauteur, hauteur.toString());
         objetJson.put(__largeur, largeur.toString());
         objetJson.put(__pourGagner, pourGagner.toString());
+        //AI
+        objetJson.put(__forceAI, forceAI.toString());
 
         return objetJson;
 
     }
 
 
+    public void setForceAI(Integer forceAI) {
+        this.forceAI = forceAI;
+    }
+
+    public Integer getForceAI() {
+        return forceAI;
+    }
 }
