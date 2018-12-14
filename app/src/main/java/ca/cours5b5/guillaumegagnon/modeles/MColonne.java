@@ -19,6 +19,20 @@ public class MColonne extends Modele {
 
     }
 
+    public MColonne(List<MJeton> listeJetons){
+
+        this.jetons = listeJetons;
+
+    }
+
+    public MColonne clone(){
+        List<MJeton> clone = new ArrayList<>(jetons.size());
+        for (MJeton item : jetons) {
+            clone.add(item.clone());
+        }
+        MColonne mColonneClone = new MColonne(clone);
+        return mColonneClone;
+    }
 
     public List<MJeton> getJetons() {
         return jetons;

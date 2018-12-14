@@ -3,6 +3,8 @@ package ca.cours5b5.guillaumegagnon.modeles;
 import com.google.gson.internal.bind.ObjectTypeAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,29 @@ import ca.cours5b5.guillaumegagnon.serialisation.AttributSerialisable;
 public class MGrille extends Modele  {
 
     private List<MColonne> colonnes;
+
+    // pour IA
+    // test
+    /*public void copierGrille(List<MColonne> colonnes){
+        //this.colonnes = colonnes;
+        Collections.copy(this.colonnes, colonnes);
+    }*/
+
+    // test pour IA
+    //test clone()
+    public MGrille clone(){
+        List<MColonne> clone = new ArrayList<>(colonnes.size());
+        for (MColonne item : colonnes) {
+            clone.add(item.clone());
+        }
+        MGrille mColonneClone = new MGrille(clone);
+        return mColonneClone;
+    }
+    public MGrille(List<MColonne> listeColonnes){
+
+        this.colonnes = listeColonnes;
+
+    }
 
 
     public MGrille(int largeur){

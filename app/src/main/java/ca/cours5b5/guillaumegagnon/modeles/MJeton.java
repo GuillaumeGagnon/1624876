@@ -16,6 +16,10 @@ public class MJeton extends Modele {
 
     }
 
+    public MJeton clone(){
+        return new MJeton(this.couleur);
+    }
+
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
 
